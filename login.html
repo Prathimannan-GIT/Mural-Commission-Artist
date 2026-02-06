@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Mural Art Commission</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#D4AF37', dark: '#B8860B', light: '#F4E0A1' },
+                        secondary: '#1A1A1A',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body
+    class="bg-gray-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 h-full flex items-center justify-center overflow-hidden antialiased font-sans">
+
+    <!-- Login Container -->
+    <div class="w-full max-w-md px-6">
+        <!-- Logo (Clickable to Home) -->
+        <a href="index.html" class="flex flex-col items-center mb-10 group transition-transform hover:scale-105">
+            <div
+                class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-xl shadow-primary/20 mb-4 transition-transform group-hover:rotate-12">
+                <i class="fas fa-paint-brush"></i>
+            </div>
+            <span class="font-heading text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">MURAL<span
+                    class="text-primary">ART</span></span>
+        </a>
+
+        <!-- Login Card -->
+        <div
+            class="bg-white dark:bg-zinc-900 rounded-[2.5rem] p-10 shadow-2xl border border-zinc-100 dark:border-zinc-800">
+            <h2 class="text-2xl font-bold text-center mb-8">Welcome Back</h2>
+
+            <form action="#" class="space-y-6">
+                <div>
+                    <label class="block text-xs font-bold mb-2 uppercase tracking-widest text-zinc-500">Email
+                        Address</label>
+                    <input type="email" required
+                        class="w-full bg-zinc-50 dark:bg-zinc-800 border-none rounded-xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none transition-all"
+                        placeholder="name@example.com">
+                </div>
+
+                <div>
+                    <div class="flex justify-between mb-2">
+                        <label class="text-xs font-bold uppercase tracking-widest text-zinc-500">Password</label>
+                        <a href="#" class="text-xs text-primary font-bold hover:underline">Forgot?</a>
+                    </div>
+                    <input type="password" required
+                        class="w-full bg-zinc-50 dark:bg-zinc-800 border-none rounded-xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none transition-all"
+                        placeholder="••••••••">
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-primary hover:bg-primary-dark text-white py-4 rounded-xl font-bold transition-all shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98]">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="mt-8 flex items-center space-x-4">
+                <div class="flex-1 h-px bg-zinc-100 dark:bg-zinc-800"></div>
+                <span class="text-xs text-zinc-400 font-medium uppercase tracking-widest">Or continue with</span>
+                <div class="flex-1 h-px bg-zinc-100 dark:bg-zinc-800"></div>
+            </div>
+
+            <!-- Social Logins -->
+            <div class="mt-8 grid grid-cols-2 gap-4">
+                <button
+                    class="flex items-center justify-center space-x-3 bg-white dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700 py-3 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-all font-bold text-sm">
+                    <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google"
+                        class="w-5 h-5">
+                    <span>Google</span>
+                </button>
+                <button
+                    class="flex items-center justify-center space-x-3 bg-[#1877F2] text-white py-3 rounded-xl hover:opacity-90 transition-all font-bold text-sm shadow-lg shadow-blue-500/20">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </button>
+            </div>
+
+            <p class="mt-10 text-center text-sm text-zinc-500">
+                Don't have an account?
+                <a href="#" class="text-primary font-bold hover:underline ml-1">Create Account</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+
+</html>

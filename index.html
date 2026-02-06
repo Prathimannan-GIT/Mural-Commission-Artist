@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mural Commission Artist | Transforming Walls into Stories</title>
+    <meta name="description"
+        content="Professional mural commission artist specializing in residential, commercial, and public art. custom designs that transform spaces.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖌️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#D4AF37', // Gold
+                            dark: '#B8860B',
+                            light: '#F4E0A1',
+                        },
+                        secondary: '#1A1A1A',
+                        accent: '#E63946',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body x-data="{ 
+    darkMode: localStorage.getItem('darkMode') === 'true', 
+    mobileMenuOpen: false,
+    scrolled: false,
+    activePage: 'home'
+}" :class="{ 'dark': darkMode }"
+    class="bg-gray-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans"
+    @scroll.window="scrolled = (window.pageYOffset > 20)">
+
+    <!-- Navbar -->
+    <header
+        :class="{ 'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm py-3 text-zinc-900 dark:text-white': scrolled, 'bg-transparent py-5 text-white': !scrolled }"
+        class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-2 group h-12">
+                <div
+                    class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl font-bold transition-transform group-hover:scale-110">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <span class="font-heading text-xl md:text-2xl font-bold tracking-tight"
+                    :class="{ 'text-zinc-900 dark:text-white': scrolled, 'text-white': !scrolled }">MURAL<span
+                        class="text-primary">ART</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center space-x-1">
+                <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'home' ? 'bg-primary text-white' : 'hover:text-primary'">Home</a>
+                <a href="home2.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'home2' ? 'bg-primary text-white' : 'hover:text-primary'">Campaign</a>
+                <a href="portfolio.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'portfolio' ? 'bg-primary text-white' : 'hover:text-primary'">Portfolio</a>
+                <a href="services.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'services' ? 'bg-primary text-white' : 'hover:text-primary'">Services</a>
+
+                <!-- More Dropdown -->
+                <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button
+                        :class="['process', 'pricing', 'about', 'testimonials', 'blog'].includes(activePage) ? 'bg-primary text-white' : 'hover:text-primary'"
+                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center space-x-1">
+                        <span>More</span>
+                        <i class="fas fa-chevron-down text-[10px]" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 w-48 mt-1 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-100 dark:border-zinc-800 py-2 text-zinc-900 dark:text-white">
+                        <a href="process.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'process' ? 'text-primary font-bold' : ''">Process</a>
+                        <a href="pricing.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'pricing' ? 'text-primary font-bold' : ''">Pricing</a>
+                        <a href="about.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'about' ? 'text-primary font-bold' : ''">About</a>
+                        <a href="testimonials.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'testimonials' ? 'text-primary font-bold' : ''">Testimonials</a>
+                        <a href="blog.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'blog' ? 'text-primary font-bold' : ''">Art
+                            Journal</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'contact' ? 'bg-primary text-white' : 'hover:text-primary'">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle -->
+                <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
+                    class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                    <i x-show="!darkMode" class="fas fa-moon"
+                        :class="{ 'text-zinc-600': scrolled, 'text-white': !scrolled }"></i>
+                    <i x-show="darkMode" class="fas fa-sun text-primary"></i>
+                </button>
+
+                <a href="booking.html"
+                    class="hidden md:flex bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/25 hover:scale-105 active:scale-95">
+                    Book Now
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button @click="mobileMenuOpen = true" class="lg:hidden p-2"
+                    :class="{ 'text-zinc-600 dark:text-zinc-400': scrolled, 'text-white': !scrolled }">
+                    <i class="fas fa-bars-staggered text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Slide-in Panel -->
+    <div x-show="mobileMenuOpen" class="fixed inset-0 z-[60] lg:hidden" x-transition.opacity>
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-zinc-900/60 backdrop-blur-sm" @click="mobileMenuOpen = false"></div>
+
+        <!-- Panel -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full"
+            class="absolute inset-y-0 left-0 w-80 bg-white dark:bg-zinc-950 shadow-2xl flex flex-col">
+
+            <div class="p-6 flex items-center justify-between border-b dark:border-zinc-800">
+                <div class="flex items-center space-x-2">
+                    <div
+                        class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-lg font-bold">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <span class="font-heading text-lg font-bold">MURAL ART</span>
+                </div>
+                <button @click="mobileMenuOpen = false"
+                    class="p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto py-6 px-4">
+                <nav class="space-y-4">
+                    <a href="index.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Home</a>
+                    <a href="home2.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Campaign</a>
+                    <a href="portfolio.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Portfolio</a>
+                    <a href="services.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Services</a>
+                    <a href="process.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Process</a>
+                    <a href="pricing.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Pricing</a>
+                    <a href="about.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">About</a>
+                    <a href="contact.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Contact</a>
+                </nav>
+            </div>
+
+            <div class="p-6 border-t dark:border-zinc-800">
+                <a href="booking.html"
+                    class="w-full flex items-center justify-center bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-primary-dark transition-colors">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                    alt="Mural Art" class="w-full h-full object-cover">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/70 to-transparent dark:from-zinc-950 dark:via-zinc-950/80">
+                </div>
+            </div>
+
+            <div class="container mx-auto px-4 md:px-6 relative z-10">
+                <div class="max-w-3xl mx-auto text-center">
+                    <span
+                        class="inline-block px-4 py-1.5 bg-primary/20 text-primary text-sm font-bold tracking-widest uppercase rounded-full mb-6">Masterpieces
+                        on Walls</span>
+                    <h1 class="font-heading text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
+                        Transforming <span class="text-primary italic">Walls</span> <br> into Stories
+                    </h1>
+                    <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+                        Hand-painted custom murals for residential, commercial, and public spaces.
+                        Bringing life and character to your environment through bespoke artistic vision.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="booking.html"
+                            class="bg-primary hover:bg-primary-dark text-white text-center px-10 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-xl shadow-primary/20">
+                            Request a Mural
+                        </a>
+                        <a href="portfolio.html"
+                            class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 text-center px-10 py-4 rounded-full text-lg font-bold transition-all hover:scale-105">
+                            View Portfolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
+                <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center py-2">
+                    <div class="w-1 h-2 bg-white rounded-full"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Murals -->
+        <section class="py-24 bg-white dark:bg-zinc-900">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Featured Murals</h2>
+                        <div class="w-20 h-1.5 bg-primary rounded-full"></div>
+                    </div>
+                    <a href="portfolio.html" class="text-primary font-bold hover:underline flex items-center space-x-2">
+                        <span>View All Projects</span>
+                        <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="group relative overflow-hidden rounded-3xl aspect-[4/5] shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1561214078-f3247647fc5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Mural 1"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-80">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-500 group-hover:-translate-y-2">
+                            <span
+                                class="text-primary text-sm font-bold uppercase tracking-widest mb-2 block">Residential</span>
+                            <h3 class="text-white text-2xl font-bold mb-4">Floral Haven Study</h3>
+                            <a href="#"
+                                class="inline-flex items-center justify-center w-12 h-12 bg-white rounded-full text-zinc-950 hover:bg-primary hover:text-white transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="group relative overflow-hidden rounded-3xl aspect-[4/5] shadow-xl">
+                        <img src="https://b.zmtcdn.com/data/pictures/8/21761518/9772502fdf1bd2698d7e78e5fd0f0b4e_featured_v2.jpg"
+                            alt="Mural 2"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-80">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-500 group-hover:-translate-y-2">
+                            <span
+                                class="text-primary text-sm font-bold uppercase tracking-widest mb-2 block">Commercial</span>
+                            <h3 class="text-white text-2xl font-bold mb-4">Urban Rhythm Cafe</h3>
+                            <a href="#"
+                                class="inline-flex items-center justify-center w-12 h-12 bg-white rounded-full text-zinc-950 hover:bg-primary hover:text-white transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="group relative overflow-hidden rounded-3xl aspect-[4/5] shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Mural 3"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-80">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-500 group-hover:-translate-y-2">
+                            <span class="text-primary text-sm font-bold uppercase tracking-widest mb-2 block">Public
+                                Space</span>
+                            <h3 class="text-white text-2xl font-bold mb-4">community Soul Plaza</h3>
+                            <a href="#"
+                                class="inline-flex items-center justify-center w-12 h-12 bg-white rounded-full text-zinc-950 hover:bg-primary hover:text-white transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Me -->
+        <section class="py-24 bg-zinc-50 dark:bg-zinc-800/50">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
+                    <div class="relative">
+                        <div class="flex items-center justify-center">
+                            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                alt="Artist at work" class="rounded-3xl shadow-2xl relative z-10 w-full">
+                        </div>
+                        <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+                        <div class="absolute -bottom-10 -right-10 w-60 h-60 bg-primary/10 rounded-full blur-3xl"></div>
+                    </div>
+                    <div>
+                        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-8">Why Choose <span
+                                class="text-primary">Me</span>?</h2>
+                        <div class="space-y-8">
+                            <div class="flex items-start space-x-6">
+                                <div
+                                    class="shrink-0 w-14 h-14 bg-white dark:bg-zinc-900 rounded-2xl shadow-lg flex items-center justify-center text-primary text-2xl">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Unique Custom Designs</h4>
+                                    <p class="text-zinc-600 dark:text-zinc-400">Every mural is a custom creation
+                                        tailored to your space, lighting, and personal style. No templates, just
+                                        original art.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-6">
+                                <div
+                                    class="shrink-0 w-14 h-14 bg-white dark:bg-zinc-900 rounded-2xl shadow-lg flex items-center justify-center text-primary text-2xl">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">10+ Years Experience</h4>
+                                    <p class="text-zinc-600 dark:text-zinc-400">Decade of experience painting
+                                        large-scale works in diverse environments, from boutiques to public
+                                        institutions.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-6">
+                                <div
+                                    class="shrink-0 w-14 h-14 bg-white dark:bg-zinc-900 rounded-2xl shadow-lg flex items-center justify-center text-primary text-2xl">
+                                    <i class="fas fa-shield-halved"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Quality & Durability</h4>
+                                    <p class="text-zinc-600 dark:text-zinc-400">Using only premium, UV-resistant paints
+                                        and protective coatings to ensure your investment lasts for decades.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FAQ Section -->
+        <section class="py-24 bg-white dark:bg-zinc-900 overflow-hidden">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16 px-4">
+                    <h2 class="font-heading text-3xl md:text-5xl font-bold mb-6">Common Questions</h2>
+                    <p class="text-zinc-600 dark:text-zinc-400 text-lg">Everything you need to know about the mural
+                        commission process, from timelines to maintenance.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4" x-data="{ active: null }">
+                    <!-- Q1 -->
+                    <div
+                        class="bg-zinc-50 dark:bg-zinc-800/30 rounded-3xl p-8 transition-all hover:bg-white dark:hover:bg-zinc-800 border border-transparent hover:border-primary/20">
+                        <button @click="active = active === 1 ? null : 1"
+                            class="w-full flex items-center justify-between text-left focus:outline-none">
+                            <h4 class="text-lg font-bold">How long does a mural take?</h4>
+                            <i class="fas fa-chevron-down text-sm transition-transform duration-300"
+                                :class="active === 1 ? 'rotate-180 text-primary' : ''"></i>
+                        </button>
+                        <div x-show="active === 1" x-transition.opacity x-cloak
+                            class="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            A typical residential mural takes 3-5 days, while larger commercial projects can take 2-3
+                            weeks depending on complexity and scale.
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div
+                        class="bg-zinc-50 dark:bg-zinc-800/30 rounded-3xl p-8 transition-all hover:bg-white dark:hover:bg-zinc-800 border border-transparent hover:border-primary/20">
+                        <button @click="active = active === 2 ? null : 2"
+                            class="w-full flex items-center justify-between text-left focus:outline-none">
+                            <h4 class="text-lg font-bold">Do you work outdoors?</h4>
+                            <i class="fas fa-chevron-down text-sm transition-transform duration-300"
+                                :class="active === 2 ? 'rotate-180 text-primary' : ''"></i>
+                        </button>
+                        <div x-show="active === 2" x-transition.opacity x-cloak
+                            class="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            Yes! I specialize in both interior and exterior murals using weather-resistant, UV-stable
+                            professional paints and protective sealants.
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div
+                        class="bg-zinc-50 dark:bg-zinc-800/30 rounded-3xl p-8 transition-all hover:bg-white dark:hover:bg-zinc-800 border border-transparent hover:border-primary/20">
+                        <button @click="active = active === 3 ? null : 3"
+                            class="w-full flex items-center justify-between text-left focus:outline-none">
+                            <h4 class="text-lg font-bold">What's the pricing model?</h4>
+                            <i class="fas fa-chevron-down text-sm transition-transform duration-300"
+                                :class="active === 3 ? 'rotate-180 text-primary' : ''"></i>
+                        </button>
+                        <div x-show="active === 3" x-transition.opacity x-cloak
+                            class="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            Pricing is based on square footage, level of detail, and surface conditions. Projects
+                            typically range from $1,500 to $15,000+. Check our <a href="pricing.html"
+                                class="text-primary hover:underline">Pricing Page</a> for details.
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div
+                        class="bg-zinc-50 dark:bg-zinc-800/30 rounded-3xl p-8 transition-all hover:bg-white dark:hover:bg-zinc-800 border border-transparent hover:border-primary/20">
+                        <button @click="active = active === 4 ? null : 4"
+                            class="w-full flex items-center justify-between text-left focus:outline-none">
+                            <h4 class="text-lg font-bold">Is design included?</h4>
+                            <i class="fas fa-chevron-down text-sm transition-transform duration-300"
+                                :class="active === 4 ? 'rotate-180 text-primary' : ''"></i>
+                        </button>
+                        <div x-show="active === 4" x-transition.opacity x-cloak
+                            class="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            Absolutely. Every commission includes a custom design phase with two rounds of revisions to
+                            ensure the final artwork aligns perfectly with your space.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Feed -->
+        <section class="py-24 bg-zinc-50 dark:bg-zinc-800/50">
+            <div class="container mx-auto px-4 md:px-6">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 text-center md:text-left gap-4">
+                    <div>
+                        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Art Journal</h2>
+                        <div class="w-20 h-1.5 bg-primary rounded-full mx-auto md:mx-0"></div>
+                    </div>
+                    <a href="blog.html" class="text-primary font-bold hover:underline mb-2 flex items-center space-x-2">
+                        <span>View All Articles</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <article
+                        class="group bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-lg border border-transparent hover:border-primary/20 transition-all">
+                        <div class="h-60 overflow-hidden">
+                            <img src="https://paintspot.ca/wp-content/uploads/content/Varscona-Mural.jpg"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                alt="Process post">
+                        </div>
+                        <div class="p-8">
+                            <time class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3 block">March 15,
+                                2026</time>
+                            <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">Choosing the
+                                right surface for exterior murals</h3>
+                            <p class="text-zinc-600 dark:text-zinc-400 text-sm mb-6 line-clamp-2">Not all brick is
+                                created equal. Learn why surface preparation is 80% of the work in street art...</p>
+                            <a href="blog.html" class="font-bold text-sm flex items-center space-x-2 text-primary">
+                                <span>Read More</span>
+                                <i class="fas fa-chevron-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article
+                        class="group bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-lg border border-transparent hover:border-primary/20 transition-all">
+                        <div class="h-60 overflow-hidden">
+                            <img src="https://www.colorsexplained.com/wp-content/uploads/2022/03/color-wheel-theory-female-characters-illustration.jpg"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                alt="Process post">
+                        </div>
+                        <div class="p-8">
+                            <time class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3 block">March 02,
+                                2026</time>
+                            <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">Color Theory
+                                in Large Scale Commissions</h3>
+                            <p class="text-zinc-600 dark:text-zinc-400 text-sm mb-6 line-clamp-2">How ambient lighting
+                                changes the perception of murals from morning to sunset...</p>
+                            <a href="blog.html" class="font-bold text-sm flex items-center space-x-2 text-primary">
+                                <span>Read More</span>
+                                <i class="fas fa-chevron-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article
+                        class="group bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-lg border border-transparent hover:border-primary/20 transition-all lg:hidden xl:block text-zinc-900 dark:text-zinc-100">
+                        <div class="h-60 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                alt="Process post">
+                        </div>
+                        <div class="p-8">
+                            <time class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3 block">Feb 24,
+                                2026</time>
+                            <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">Studio Life:
+                                The tools of the trade</h3>
+                            <p class="text-zinc-600 dark:text-zinc-400 text-sm mb-6 line-clamp-2">From premium spray
+                                tips to specialized minerals, here's what's in my kit this season...</p>
+                            <a href="blog.html" class="font-bold text-sm flex items-center space-x-2 text-primary">
+                                <span>Read More</span>
+                                <i class="fas fa-chevron-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                     <article
+                        class="group bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden shadow-lg border border-transparent hover:border-primary/20 transition-all lg:hidden xl:block text-zinc-900 dark:text-zinc-100">
+                        <div class="h-60 overflow-hidden">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPGNpuDd3BsHfBIEwFutIdzCPzcVkfspvGbg&s"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                alt="Process post">
+                        </div>
+                        <div class="p-8">
+                            <time class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-3 block">Mar 24,
+                                2026</time>
+                            <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors"> Life:
+                                The trade</h3>
+                            <p class="text-zinc-600 dark:text-zinc-400 text-sm mb-6 line-clamp-2">From premium spray
+                                tips to specialized minerals, here's what's in my kit this season...</p>
+                            <a href="blog.html" class="font-bold text-sm flex items-center space-x-2 text-primary">
+                                <span>Read More</span>
+                                <i class="fas fa-chevron-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instagram Feed Mock -->
+        <section class="py-24 bg-white dark:bg-zinc-900 overflow-hidden border-t dark:border-zinc-800">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-16">
+                    <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Follow the Journey</h2>
+                    <p class="text-primary font-bold text-lg tracking-widest uppercase">@muralart_studio</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 px-2 md:px-0">
+                    <div class="aspect-square rounded-2xl overflow-hidden group relative">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400"
+                            class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-50"
+                            alt="Insta">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-2xl overflow-hidden group relative">
+                        <img src="data:image/jpeg;base64,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"
+                            class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-50"
+                            alt="Insta">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-2xl overflow-hidden group relative">
+                        <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=400"
+                            class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-50"
+                            alt="Insta">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-2xl overflow-hidden group relative hidden md:block">
+                        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=400"
+                            class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-50"
+                            alt="Insta">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-2xl overflow-hidden group relative hidden lg:block">
+                        <img src="data:image/jpeg;base64,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"
+                            class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-50"
+                            alt="Insta">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-2xl overflow-hidden group relative hidden lg:block">
+                        <img src="data:image/jpeg;base64,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"
+                            class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-50"
+                            alt="Insta">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-white pt-20 pb-10 border-t border-zinc-800">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <a href="index.html" class="flex items-center space-x-2 mb-6">
+                        <div
+                            class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl font-bold">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <span class="font-heading text-2xl font-bold tracking-tight">MURAL<span
+                                class="text-primary">ART</span></span>
+                    </a>
+                    <p class="text-zinc-400 mb-8 leading-relaxed">
+                        Redefining spaces through large-scale art. From initial sketch to final varnish, we bring your
+                        vision to life on any surface.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center transition-all hover:bg-primary hover:-translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center transition-all hover:bg-primary hover:-translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center transition-all hover:bg-primary hover:-translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="portfolio.html"
+                                class="text-zinc-400 hover:text-white transition-colors">Portifolio</a></li>
+                        <li><a href="services.html"
+                                class="text-zinc-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="process.html" class="text-zinc-400 hover:text-white transition-colors">How it
+                                Works</a></li>
+                        <li><a href="pricing.html" class="text-zinc-400 hover:text-white transition-colors">Pricing</a>
+                        </li>
+                        <li><a href="blog.html" class="text-zinc-400 hover:text-white transition-colors">Art Journal</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6">Specialties</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Office Murals</a></li>
+                        <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Residential Art</a>
+                        </li>
+                        <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Street Art</a></li>
+                        <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Community Projects</a>
+                        </li>
+                        <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Live Painting</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6">Get Art Updates</h4>
+                    <p class="text-zinc-400 mb-6">Join my newsletter for behind-the-scenes content and exclusive offers.
+                    </p>
+                    <form @submit.prevent="" class="relative">
+                        <input type="email" placeholder="Your email"
+                            class="w-full bg-zinc-800 border-none rounded-full py-4 px-6 text-white focus:ring-2 focus:ring-primary outline-none">
+                        <button
+                            class="absolute right-2 top-2 bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full font-bold transition-colors">
+                            Join
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-zinc-500 text-sm italic">
+                    &copy; 2026 Mural Art Commission. All rights reserved. Artist: [Your Name]
+                </p>
+                <div class="flex space-x-6 text-sm">
+                    <a href="privacy.html" class="text-zinc-500 hover:text-white">Privacy Policy</a>
+                    <a href="terms.html" class="text-zinc-500 hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <!-- Scroll-up Button -->
+    <button @click="window.scrollTo({ top: 0, behavior: 'smooth' })" x-show="scrolled"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-y-10 opacity-0"
+        x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-10 opacity-0"
+        class="fixed bottom-8 right-8 z-[100] w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

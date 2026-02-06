@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Artist | Mural Art Commissions</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖌️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#D4AF37', dark: '#B8860B', light: '#F4E0A1' },
+                        secondary: '#1A1A1A',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body x-data="{ 
+    darkMode: localStorage.getItem('darkMode') === 'true', 
+    mobileMenuOpen: false,
+    scrolled: false,
+    activePage: 'about'
+}" :class="{ 'dark': darkMode }"
+    class="bg-gray-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans"
+    @scroll.window="scrolled = (window.pageYOffset > 20)">
+
+    <!-- Navbar -->
+    <header
+        :class="{ 'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm py-3 text-zinc-900 dark:text-white': scrolled, 'bg-transparent py-5 text-zinc-900 dark:text-white': !scrolled }"
+        class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-2 group h-12">
+                <div
+                    class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl font-bold transition-transform group-hover:scale-110">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <span class="font-heading text-xl md:text-2xl font-bold tracking-tight"
+                    :class="{ 'text-zinc-900 dark:text-white': scrolled, 'text-zinc-900 dark:text-white': !scrolled }">MURAL<span
+                        class="text-primary">ART</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center space-x-1">
+                <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'home' ? 'bg-primary text-white' : 'hover:text-primary'">Home</a>
+                <a href="home2.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'home2' ? 'bg-primary text-white' : 'hover:text-primary'">Campaign</a>
+                <a href="portfolio.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'portfolio' ? 'bg-primary text-white' : 'hover:text-primary'">Portfolio</a>
+                <a href="services.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'services' ? 'bg-primary text-white' : 'hover:text-primary'">Services</a>
+
+                <!-- More Dropdown -->
+                <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button
+                        :class="['process', 'pricing', 'about', 'testimonials', 'blog'].includes(activePage) ? 'bg-primary text-white' : 'hover:text-primary'"
+                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center space-x-1">
+                        <span>More</span>
+                        <i class="fas fa-chevron-down text-[10px]" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 w-48 mt-1 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-100 dark:border-zinc-800 py-2 text-zinc-900 dark:text-white">
+                        <a href="process.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'process' ? 'text-primary font-bold' : ''">Process</a>
+                        <a href="pricing.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'pricing' ? 'text-primary font-bold' : ''">Pricing</a>
+                        <a href="about.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'about' ? 'text-primary font-bold' : ''">About</a>
+                        <a href="testimonials.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'testimonials' ? 'text-primary font-bold' : ''">Testimonials</a>
+                        <a href="blog.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'blog' ? 'text-primary font-bold' : ''">Art
+                            Journal</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'contact' ? 'bg-primary text-white' : 'hover:text-primary'">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle -->
+                <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
+                    class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                    <i x-show="!darkMode" class="fas fa-moon text-zinc-600"></i>
+                    <i x-show="darkMode" class="fas fa-sun text-primary"></i>
+                </button>
+
+                <a href="booking.html"
+                    class="hidden md:flex bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/25 hover:scale-105 active:scale-95">
+                    Book Now
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button @click="mobileMenuOpen = true" class="lg:hidden p-2 text-zinc-600 dark:text-zinc-400">
+                    <i class="fas fa-bars-staggered text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Slide-in Panel -->
+    <div x-show="mobileMenuOpen" class="fixed inset-0 z-[60] lg:hidden" x-transition.opacity>
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-zinc-900/60 backdrop-blur-sm" @click="mobileMenuOpen = false"></div>
+
+        <!-- Panel -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full"
+            class="absolute inset-y-0 left-0 w-80 bg-white dark:bg-zinc-950 shadow-2xl flex flex-col">
+
+            <div class="p-6 flex items-center justify-between border-b dark:border-zinc-800">
+                <div class="flex items-center space-x-2">
+                    <div
+                        class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-lg font-bold">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <span class="font-heading text-lg font-bold">MURAL ART</span>
+                </div>
+                <button @click="mobileMenuOpen = false"
+                    class="p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto py-6 px-4">
+                <nav class="space-y-4">
+                    <a href="index.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Home</a>
+                    <a href="home2.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Campaign</a>
+                    <a href="portfolio.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Portfolio</a>
+                    <a href="services.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Services</a>
+                    <a href="process.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Process</a>
+                    <a href="pricing.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Pricing</a>
+                    <a href="about.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">About</a>
+                    <a href="contact.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Contact</a>
+                </nav>
+            </div>
+
+            <div class="p-6 border-t dark:border-zinc-800">
+                <a href="booking.html"
+                    class="w-full flex items-center justify-center bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-primary-dark transition-colors">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24">
+        <!-- Hero Section -->
+        <div class="container mx-auto px-4 md:px-6 mb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="aspect-square rounded-[3rem] overflow-hidden shadow-2xl relative z-10">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1000"
+                            alt="Artist Portrait" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-10 -right-10 w-60 h-60 bg-primary/10 rounded-full blur-3xl"></div>
+                </div>
+                <div class="text-center lg:text-left">
+                    <span class="text-primary font-bold uppercase tracking-widest text-sm mb-4 block">Meet the
+                        Artist</span>
+                    <h1 class="font-heading text-5xl md:text-7xl font-extrabold mb-8 text-zinc-1000 dark:text-black">
+                        Elias <span class="text-primary">Vaughn</span></h1>
+                    <p class="text-zinc-500 dark:text-black text-lg md:text-xl leading-relaxed mb-8">
+                        With over a decade of experience in the urban art scene, Elias Vaughn has transformed hundreds
+                        of blank walls into vibrant landmarks. His work blends classical techniques with modern street
+                        art aesthetics.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <a href="contact.html"
+                            class="bg-primary text-white px-10 py-4 rounded-full font-bold shadow-xl shadow-primary/20 hover:scale-105 transition-all">Get
+                            in Touch</a>
+                        <a href="portfolio.html"
+                            class="bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white px-10 py-4 rounded-full font-bold hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all">View
+                            Portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience & Awards -->
+        <div class="py-24 bg-zinc-50 dark:bg-zinc-900/50">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                    <div>
+                        <h2 class="font-heading text-4xl font-bold mb-10 text-zinc-900 dark:text-white">Experience &
+                            <span class="text-primary">Philosophy</span>
+                        </h2>
+                        <div class="space-y-8">
+                            <div class="flex items-start space-x-6">
+                                <div
+                                    class="w-12 h-12 bg-white dark:bg-zinc-900 rounded-xl flex items-center justify-center text-primary text-xl shadow-md shrink-0">
+                                    <i class="fas fa-brush"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2 text-zinc-900 dark:text-white">Artistic Philosophy
+                                    </h4>
+                                    <p class="text-zinc-600 dark:text-zinc-200 leading-relaxed mb-4">I believe every
+                                        wall has
+                                        a story to tell. My goal is to listen to the space and the owner to create
+                                        something that feels like it has always belonged there.</p>
+                                    <p class="text-zinc-600 dark:text-zinc-200 leading-relaxed">My work is heavily
+                                        influenced by the interplay between architectural geometry and organic forms. I
+                                        use light and shadow not just as technical tools, but as emotional anchors that
+                                        shift with the day's passing.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-6">
+                                <div
+                                    class="w-12 h-12 bg-white dark:bg-zinc-900 rounded-xl flex items-center justify-center text-primary text-xl shadow-md shrink-0">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2 text-zinc-900 dark:text-white">Education</h4>
+                                    <p class="text-zinc-600 dark:text-zinc-200 leading-relaxed">BFA in Fine Arts from
+                                        the School of Visual Arts, New York. Specialization in Large-Scale Painting and
+                                        Urban Design.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 class="font-heading text-4xl font-bold mb-10">Awards & <span
+                                class="text-primary">Recognition</span></h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div
+                                class="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-sm border border-zinc-100 dark:border-zinc-800">
+                                <span class="text-primary font-bold block mb-2">2024</span>
+                                <h4 class="font-bold text-zinc-900 dark:text-white">Urban Visionary Award</h4>
+                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2">Global Street Art Collective
+                                </p>
+                            </div>
+                            <div
+                                class="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-sm border border-zinc-100 dark:border-zinc-800">
+                                <span class="text-primary font-bold block mb-2">2022</span>
+                                <h4 class="font-bold text-zinc-900 dark:text-white">Best Commercial Mural</h4>
+                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2">Design Excellence Forum</p>
+                            </div>
+                            <div
+                                class="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-sm border border-zinc-100 dark:border-zinc-800">
+                                <span class="text-primary font-bold block mb-2">2019</span>
+                                <h4 class="font-bold text-zinc-900 dark:text-white">Artist of the Year</h4>
+                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2">Heritage Art Council</p>
+                            </div>
+                            <div
+                                class="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-sm border border-zinc-100 dark:border-zinc-800">
+                                <span class="text-primary font-bold block mb-2">2017</span>
+                                <h4 class="font-bold text-zinc-900 dark:text-white">International Recognition</h4>
+                                <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2">Sotheby's Emerging List</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exhibition History -->
+        <div class="py-24 bg-white dark:bg-zinc-950">
+            <div class="container mx-auto px-4 md:px-6 text-zinc-900 dark:text-zinc-100">
+                <div class="flex flex-col md:flex-row gap-16 items-start">
+                    <div class="w-full md:w-1/3">
+                        <h2 class="font-heading text-4xl font-bold mb-6">Exhibition <span
+                                class="text-primary">History</span></h2>
+                        <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">A selection of solo and group
+                            exhibitions showcasing canvas work and large-scale mural documentation across the globe.</p>
+                    </div>
+                    <div class="w-full md:w-2/3 space-y-6">
+                        <div class="flex border-b border-zinc-100 dark:border-zinc-800 pb-6">
+                            <span class="w-20 font-bold text-primary shrink-0">2025</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-zinc-900 dark:text-white">"Walls That Breathe" - Solo
+                                    Exhibition</h4>
+                                <p class="text-zinc-500 dark:text-zinc-400 text-sm">Museum of Modern Art, San Francisco
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex border-b border-zinc-100 dark:border-zinc-800 pb-6">
+                            <span class="w-20 font-bold text-primary shrink-0">2023</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-zinc-900 dark:text-white">Urban Renaissance Group Show
+                                </h4>
+                                <p class="text-zinc-500 dark:text-zinc-400 text-sm">The Brick Lane Gallery, London</p>
+                            </div>
+                        </div>
+                        <div class="flex border-b border-zinc-100 dark:border-zinc-800 pb-6">
+                            <span class="w-20 font-bold text-primary shrink-0">2021</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-zinc-900 dark:text-white">Street Visionaries Biennale
+                                </h4>
+                                <p class="text-zinc-500 dark:text-zinc-400 text-sm">International Street Art Festival,
+                                    Berlin</p>
+                            </div>
+                        </div>
+                        <div class="flex pb-6">
+                            <span class="w-20 font-bold text-primary shrink-0">2019</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-zinc-900 dark:text-white">Concrete Canvas (Solo)</h4>
+                                <p class="text-zinc-500 dark:text-zinc-400 text-sm">Wynwood Walls Gallery, Miami</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Studio Environment -->
+        <div class="py-24 bg-zinc-50 dark:bg-zinc-900/50">
+            <div class="container mx-auto px-4 md:px-6 text-zinc-900 dark:text-zinc-100">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 lg:order-1">
+                        <h2 class="font-heading text-4xl font-bold mb-8 text-zinc-900 dark:text-white">Inside the <span
+                                class="text-primary">Studio</span></h2>
+                        <p class="text-zinc-600 dark:text-white text-lg leading-relaxed mb-6">
+                            Located in the heart of the creative district, our studio is more than just a workspace—it's
+                            a laboratory for texture and light.
+                        </p>
+                        <p class="text-zinc-600 dark:text-white mb-8 leading-relaxed">
+                            Here, we test pigments, experiment with new protective sealants, and draft life-sized
+                            concepts before they ever touch your wall. We invite prospective clients to visit and see
+                            the materials and scale of our work firsthand.
+                        </p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <li class="flex items-center space-x-3 text-zinc-700 dark:text-white">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>High-End Spray Lab</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-zinc-700 dark:text-white">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>Custom Pigment Mixing</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-zinc-700 dark:text-white">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>Digital Projection Tests</span>
+                            </li>
+                            <li class="flex items-center space-x-3 text-zinc-700 dark:text-white">
+                                <i class="fas fa-check-circle text-primary"></i>
+                                <span>Sustainable Material Focus</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="order-1 lg:order-2 relative text-zinc-9100 dark:text-zinc-100">
+                        <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+                            <img src="assets/Community Heartbeat Mural.jpg" alt="Studio Space"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-primary/20 rounded-full blur-2xl"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="py-24 bg-white dark:bg-zinc-950">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-16">
+                    <h2 class="font-heading text-4xl font-bold mb-4 text-zinc-900 dark:text-white">Meet the <span
+                            class="text-primary">Collaborators</span></h2>
+                    <p class="text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">Behind every great mural is a
+                        dedicated team of
+                        assistants and specialists.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Team Member 1 -->
+                    <div class="group">
+                        <div class="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800" alt="Team Member"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-900 dark:text-white">Elena Rodriguez</h4>
+                        <p class="text-primary font-medium text-sm">Lead Color Specialist</p>
+                    </div>
+                    <!-- Team Member 2 -->
+                    <div class="group">
+                        <div class="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800"
+                                alt="Team Member"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-900 dark:text-white">Marcus Thorne</h4>
+                        <p class="text-primary font-medium text-sm">Large Scale Assistant</p>
+                    </div>
+                    <!-- Team Member 3 -->
+                    <div class="group">
+                        <div class="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-lg">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800"
+                                alt="Team Member"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                        </div>
+                        <h4 class="text-xl font-bold text-zinc-900 dark:text-white">Sarah Lin</h4>
+                        <p class="text-primary font-medium text-sm">Detail & Varnish Expert</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Press Section -->
+        <div class="py-24">
+            <div class="container mx-auto px-4 md:px-6 text-center">
+                <h2
+                    class="font-heading text-3xl font-bold mb-16 text-zinc-400 dark:text-zinc-600 uppercase tracking-[0.3em]">
+                    As Seen In</h2>
+                <div
+                    class="flex flex-wrap justify-center items-center gap-16 md:gap-24 opacity-60 hover:opacity-100 transition-opacity">
+                    <span class="text-2xl md:text-3xl font-black italic">ArtDigest</span>
+                    <span class="text-2xl md:text-3xl font-black italic">WallStreet</span>
+                    <span class="text-2xl md:text-3xl font-black italic">DesignMilk</span>
+                    <span class="text-2xl md:text-3xl font-black italic">ModernArts</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-white pt-20 pb-10">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <div class="pt-8 border-t border-zinc-800 text-zinc-500 text-sm">
+                &copy; 2026 Mural Art Commission. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll-up Button -->
+    <button @click="window.scrollTo({ top: 0, behavior: 'smooth' })" x-show="scrolled"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-y-10 opacity-0"
+        x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-10 opacity-0"
+        class="fixed bottom-8 right-8 z-[100] w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

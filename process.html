@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Process | How It Works | Mural Art</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖌️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#D4AF37', dark: '#B8860B', light: '#F4E0A1' },
+                        secondary: '#1A1A1A',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body x-data="{ 
+    darkMode: localStorage.getItem('darkMode') === 'true', 
+    mobileMenuOpen: false,
+    scrolled: false,
+    activePage: 'process'
+}" :class="{ 'dark': darkMode }"
+    class="bg-gray-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans"
+    @scroll.window="scrolled = (window.pageYOffset > 20)">
+
+    <!-- Navbar -->
+    <header
+        :class="{ 'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm py-3 text-zinc-900 dark:text-white': scrolled, 'bg-transparent py-5 text-zinc-900 dark:text-white': !scrolled }"
+        class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-2 group h-12">
+                <div
+                    class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl font-bold transition-transform group-hover:scale-110">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <span class="font-heading text-xl md:text-2xl font-bold tracking-tight"
+                    :class="{ 'text-zinc-900 dark:text-white': scrolled, 'text-zinc-900 dark:text-white': !scrolled }">MURAL<span
+                        class="text-primary">ART</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center space-x-1">
+                <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'home' ? 'bg-primary text-white' : 'hover:text-primary'">Home</a>
+                <a href="home2.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'home2' ? 'bg-primary text-white' : 'hover:text-primary'">Campaign</a>
+                <a href="portfolio.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'portfolio' ? 'bg-primary text-white' : 'hover:text-primary'">Portfolio</a>
+                <a href="services.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'services' ? 'bg-primary text-white' : 'hover:text-primary'">Services</a>
+
+                <!-- More Dropdown -->
+                <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button
+                        :class="['process', 'pricing', 'about', 'testimonials', 'blog'].includes(activePage) ? 'bg-primary text-white' : 'hover:text-primary'"
+                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center space-x-1">
+                        <span>More</span>
+                        <i class="fas fa-chevron-down text-[10px]" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 w-48 mt-1 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-100 dark:border-zinc-800 py-2 text-zinc-900 dark:text-white">
+                        <a href="process.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'process' ? 'text-primary font-bold' : ''">Process</a>
+                        <a href="pricing.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'pricing' ? 'text-primary font-bold' : ''">Pricing</a>
+                        <a href="about.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'about' ? 'text-primary font-bold' : ''">About</a>
+                        <a href="testimonials.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'testimonials' ? 'text-primary font-bold' : ''">Testimonials</a>
+                        <a href="blog.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'blog' ? 'text-primary font-bold' : ''">Art
+                            Journal</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'contact' ? 'bg-primary text-white' : 'hover:text-primary'">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle -->
+                <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
+                    class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                    <i x-show="!darkMode" class="fas fa-moon text-zinc-600"></i>
+                    <i x-show="darkMode" class="fas fa-sun text-primary"></i>
+                </button>
+
+                <a href="booking.html"
+                    class="hidden md:flex bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/25 hover:scale-105 active:scale-95">
+                    Book Now
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button @click="mobileMenuOpen = true" class="lg:hidden p-2 text-zinc-600 dark:text-zinc-400">
+                    <i class="fas fa-bars-staggered text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Slide-in Panel -->
+    <div x-show="mobileMenuOpen" class="fixed inset-0 z-[60] lg:hidden" x-transition.opacity>
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-zinc-900/60 backdrop-blur-sm" @click="mobileMenuOpen = false"></div>
+
+        <!-- Panel -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full"
+            class="absolute inset-y-0 left-0 w-80 bg-white dark:bg-zinc-950 shadow-2xl flex flex-col">
+
+            <div class="p-6 flex items-center justify-between border-b dark:border-zinc-800">
+                <div class="flex items-center space-x-2">
+                    <div
+                        class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-lg font-bold">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <span class="font-heading text-lg font-bold">MURAL ART</span>
+                </div>
+                <button @click="mobileMenuOpen = false"
+                    class="p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto py-6 px-4">
+                <nav class="space-y-4">
+                    <a href="index.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Home</a>
+                    <a href="home2.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Campaign</a>
+                    <a href="portfolio.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Portfolio</a>
+                    <a href="services.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Services</a>
+                    <a href="process.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Process</a>
+                    <a href="pricing.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Pricing</a>
+                    <a href="about.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">About</a>
+                    <a href="contact.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Contact</a>
+                </nav>
+            </div>
+
+            <div class="p-6 border-t dark:border-zinc-800">
+                <a href="booking.html"
+                    class="w-full flex items-center justify-center bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-primary-dark transition-colors">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24">
+        <!-- Hero -->
+        <div class="container mx-auto px-4 md:px-6 mb-20 text-center">
+            <h1 class="font-heading text-5xl md:text-7xl font-extrabold mb-6">Our <span
+                    class="text-primary italic">Process</span></h1>
+            <p class="text-zinc-600 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                Step-by-step from initial vision to a finished masterpiece. We ensure a seamless and collaborative
+                experience.
+            </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="container mx-auto px-4 md:px-6 max-w-5xl">
+            <div class="relative space-y-24">
+                <!-- Vertical Line -->
+                <div class="absolute left-1/2 -ml-0.5 w-1 h-full bg-zinc-200 dark:bg-zinc-800 hidden md:block"></div>
+
+                <!-- Step 1 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-12">
+                    <div class="flex-1 md:text-right">
+                        <h3 class="text-3xl font-bold mb-4">1. Submit Your Idea</h3>
+                        <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            Fill out our booking form with your wall size, location, and a brief description of your
+                            vision. Attach any reference images that inspire you.
+                        </p>
+                    </div>
+                    <div
+                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold relative z-10 shadow-xl shadow-primary/30 shrink-0">
+                        <i class="fas fa-paper-plane text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <!-- Space for image/illustration -->
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex flex-col md:flex-row-reverse items-center gap-12">
+                    <div class="flex-1 md:text-left">
+                        <h3 class="text-3xl font-bold mb-4">2. Free Consultation</h3>
+                        <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            We'll schedule a call or site visit to discuss the project in detail, evaluate the wall
+                            condition, and provide a formal quote.
+                        </p>
+                    </div>
+                    <div
+                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold relative z-10 shadow-xl shadow-primary/30 shrink-0">
+                        <i class="fas fa-comments text-xl"></i>
+                    </div>
+                    <div class="flex-1"></div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-12">
+                    <div class="flex-1 md:text-right">
+                        <h3 class="text-3xl font-bold mb-4">3. Design Mockup</h3>
+                        <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            Based on our discussion, I create digital sketches superimposed on photos of your wall, so
+                            you can see exactly how the final piece will look.
+                        </p>
+                    </div>
+                    <div
+                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold relative z-10 shadow-xl shadow-primary/30 shrink-0">
+                        <i class="fas fa-pen-nib text-xl"></i>
+                    </div>
+                    <div class="flex-1"></div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative flex flex-col md:flex-row-reverse items-center gap-12">
+                    <div class="flex-1 md:text-left">
+                        <h3 class="text-3xl font-bold mb-4">4. On-Site Painting</h3>
+                        <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            The creative work begins! I bring all materials and tools, ensuring a clean and professional
+                            workspace throughout the painting phase.
+                        </p>
+                    </div>
+                    <div
+                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold relative z-10 shadow-xl shadow-primary/30 shrink-0">
+                        <i class="fas fa-paint-roller text-xl"></i>
+                    </div>
+                    <div class="flex-1"></div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="relative flex flex-col md:flex-row items-center gap-12">
+                    <div class="flex-1 md:text-right">
+                        <h3 class="text-3xl font-bold mb-4">5. Final Reveal & Care</h3>
+                        <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            A final walk-through, varnishing for protection, and a care guide to ensure your mural stays
+                            vibrant for decades.
+                        </p>
+                    </div>
+                    <div
+                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold relative z-10 shadow-xl shadow-primary/30 shrink-0">
+                        <i class="fas fa-check-circle text-xl"></i>
+                    </div>
+                    <div class="flex-1"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Materials & Tools Section -->
+        <section class="py-24 bg-white dark:bg-zinc-900 border-t dark:border-zinc-800 mt-24">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="relative">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="aspect-square rounded-3xl overflow-hidden shadow-lg transform translate-y-8">
+                                <img src="assets/paints.jpg"
+                                    alt="Paints" class="w-full h-full object-cover">
+                            </div>
+                            <div class="aspect-square rounded-3xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600"
+                                    alt="Brushes" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div
+                            class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl">
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="font-heading text-4xl font-bold mb-8 dark:text-white">Professional <span
+                                class="text-primary italic">Materials</span></h2>
+                        <p class="text-zinc-600 dark:text-zinc-400 text-lg leading-relaxed mb-8">
+                            Quality is non-negotiable. We use museum-grade materials designed to withstand the elements
+                            and maintain their brilliance for over 20 years.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="w-10 h-10 bg-zinc-50 dark:bg-zinc-800 rounded-xl flex items-center justify-center text-primary shrink-0">
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold mb-1">UV-Stable Pigments</h5>
+                                    <p class="text-sm text-zinc-500">Paints that won't fade even under direct summer
+                                        sun.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="w-10 h-10 bg-zinc-50 dark:bg-zinc-800 rounded-xl flex items-center justify-center text-primary shrink-0">
+                                    <i class="fas fa-wind"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold mb-1">Eco-Friendly</h5>
+                                    <p class="text-sm text-zinc-500">Low-VOC, odorless options for residential and
+                                        office interiors.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="w-10 h-10 bg-zinc-50 dark:bg-zinc-800 rounded-xl flex items-center justify-center text-primary shrink-0">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold mb-1">Nano-Sealants</h5>
+                                    <p class="text-sm text-zinc-500">Graffiti-resistant and moisture-wicking protective
+                                        layers.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div
+                                    class="w-10 h-10 bg-zinc-50 dark:bg-zinc-800 rounded-xl flex items-center justify-center text-primary shrink-0">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold mb-1">Specialized Gear</h5>
+                                    <p class="text-sm text-zinc-500">From laser levelers to industrial hydraulic lifts.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Safety & Site Preparation -->
+        <section class="py-24 bg-zinc-50 dark:bg-zinc-950">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="font-heading text-3xl md:text-5xl font-bold mb-6 text-zinc-900 dark:text-white">Safety &
+                        <span class="text-primary italic">Logistics</span>
+                    </h2>
+                    <p class="text-zinc-600 dark:text-zinc-400 text-lg">We handle the technical details so you can focus
+                        on the art.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div
+                        class="group bg-white dark:bg-zinc-900 p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-primary/20 text-center">
+                        <div
+                            class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-2xl mb-8 mx-auto group-hover:bg-primary group-hover:text-white transition-all">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold dark:text-white">Site Safety</h4>
+                        <p class="text-zinc-600 text-sm leading-relaxed">Full compliance with safety regulations, secure
+                            scaffolding installation, and pedestrian management for public spaces.</p>
+                    </div>
+                    <div
+                        class="group bg-white dark:bg-zinc-900 p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-primary/20 text-center">
+                        <div
+                            class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-2xl mb-8 mx-auto group-hover:bg-primary group-hover:text-white transition-all">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold dark:text-white">Permits & Insurance</h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed">We manage local council permits and carry
+                            comprehensive liability insurance for every project we undertake.</p>
+                    </div>
+                    <div
+                        class="group bg-white dark:bg-zinc-900 p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-primary/20 text-center">
+                        <div
+                            class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-2xl mb-8 mx-auto group-hover:bg-primary group-hover:text-white transition-all">
+                            <i class="fas fa-broom"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold dark:text-white">Leave No Trace</h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed">Daily site cleanups and rigorous protection of
+                            floors, furniture, and surrounding surfaces during the creative process.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-white pt-20 pb-10">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <h2 class="font-heading text-3xl md:text-5xl font-bold mb-8">Ready to <span class="text-primary italic">get
+                    started?</span></h2>
+            <a href="booking.html"
+                class="inline-block bg-primary hover:bg-primary-dark text-white px-10 py-4 rounded-full text-lg font-bold transition-all shadow-xl shadow-primary/20 mb-16">Start
+                Your Project</a>
+            <div class="pt-8 border-t border-zinc-800 text-zinc-500 text-sm italic">
+                &copy; 2026 Mural Art Commission.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll-up Button -->
+    <button @click="window.scrollTo({ top: 0, behavior: 'smooth' })" x-show="scrolled"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-y-10 opacity-0"
+        x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-10 opacity-0"
+        class="fixed bottom-8 right-8 z-[100] w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

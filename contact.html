@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Get a Quote | Mural Art</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖌️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#D4AF37', dark: '#B8860B', light: '#F4E0A1' },
+                        secondary: '#1A1A1A',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body x-data="{ 
+    darkMode: localStorage.getItem('darkMode') === 'true', 
+    mobileMenuOpen: false,
+    scrolled: false,
+    activePage: 'contact'
+}" :class="{ 'dark': darkMode }"
+    class="bg-gray-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans"
+    @scroll.window="scrolled = (window.pageYOffset > 20)">
+    <!-- Navbar -->
+    <header
+        :class="{ 'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm py-3 text-zinc-900 dark:text-white': scrolled, 'bg-transparent py-5 text-zinc-900 dark:text-white': !scrolled }"
+        class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-2 group h-12">
+                <div
+                    class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl font-bold transition-transform group-hover:scale-110">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <span class="font-heading text-xl md:text-2xl font-bold tracking-tight"
+                    :class="{ 'text-zinc-900 dark:text-white': scrolled, 'text-zinc-900 dark:text-white': !scrolled }">MURAL<span
+                        class="text-primary">ART</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center space-x-1">
+                <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'home' ? 'bg-primary text-white' : 'hover:text-primary'">Home</a>
+                <a href="home2.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'home2' ? 'bg-primary text-white' : 'hover:text-primary'">Campaign</a>
+                <a href="portfolio.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'portfolio' ? 'bg-primary text-white' : 'hover:text-primary'">Portfolio</a>
+                <a href="services.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'services' ? 'bg-primary text-white' : 'hover:text-primary'">Services</a>
+
+                <!-- More Dropdown -->
+                <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button
+                        :class="['process', 'pricing', 'about', 'testimonials', 'blog'].includes(activePage) ? 'bg-primary text-white' : 'hover:text-primary'"
+                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center space-x-1">
+                        <span>More</span>
+                        <i class="fas fa-chevron-down text-[10px]" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 w-48 mt-1 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-100 dark:border-zinc-800 py-2 text-zinc-900 dark:text-white">
+                        <a href="process.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'process' ? 'text-primary font-bold' : ''">Process</a>
+                        <a href="pricing.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'pricing' ? 'text-primary font-bold' : ''">Pricing</a>
+                        <a href="about.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'about' ? 'text-primary font-bold' : ''">About</a>
+                        <a href="testimonials.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'testimonials' ? 'text-primary font-bold' : ''">Testimonials</a>
+                        <a href="blog.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'blog' ? 'text-primary font-bold' : ''">Art
+                            Journal</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'contact' ? 'bg-primary text-white' : 'hover:text-primary'">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle -->
+                <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
+                    class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                    <i x-show="!darkMode" class="fas fa-moon text-zinc-600"></i>
+                    <i x-show="darkMode" class="fas fa-sun text-primary"></i>
+                </button>
+
+                <a href="booking.html"
+                    class="hidden md:flex bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/25 hover:scale-105 active:scale-95">
+                    Book Now
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button @click="mobileMenuOpen = true" class="lg:hidden p-2 text-zinc-600 dark:text-zinc-400">
+                    <i class="fas fa-bars-staggered text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Slide-in Panel -->
+    <div x-show="mobileMenuOpen" class="fixed inset-0 z-[60] lg:hidden" x-transition.opacity>
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-zinc-900/60 backdrop-blur-sm" @click="mobileMenuOpen = false"></div>
+
+        <!-- Panel -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full"
+            class="absolute inset-y-0 left-0 w-80 bg-white dark:bg-zinc-950 shadow-2xl flex flex-col">
+
+            <div class="p-6 flex items-center justify-between border-b dark:border-zinc-800">
+                <div class="flex items-center space-x-2">
+                    <div
+                        class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-lg font-bold">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <span class="font-heading text-lg font-bold text-zinc-900 dark:text-white">MURAL ART</span>
+                </div>
+                <button @click="mobileMenuOpen = false"
+                    class="p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto py-6 px-4">
+                <nav class="space-y-4">
+                    <a href="index.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Home</a>
+                    <a href="home2.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Campaign</a>
+                    <a href="portfolio.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Portfolio</a>
+                    <a href="services.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Services</a>
+                    <a href="process.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Process</a>
+                    <a href="pricing.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Pricing</a>
+                    <a href="about.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">About</a>
+                    <a href="contact.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Contact</a>
+                </nav>
+            </div>
+
+            <div class="p-6 border-t dark:border-zinc-800">
+                <a href="booking.html"
+                    class="w-full flex items-center justify-center bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-primary-dark transition-colors">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <!-- Contact Info -->
+                <div>
+                    <h1 class="font-heading text-5xl md:text-7xl font-extrabold mb-8">Let's <span
+                            class="text-primary italic">Talk Art.</span></h1>
+                    <p class="text-zinc-600 dark:text-zinc-400 text-lg md:text-xl leading-relaxed mb-12">
+                        Whether you have a specific project in mind or just want to explore possibilities, we're here to
+                        help.
+                    </p>
+
+                    <div class="space-y-10">
+                        <div
+                            class="flex flex-col md:flex-row items-center md:items-start text-center md:text-left space-y-4 md:space-y-0 md:space-x-6">
+                            <div
+                                class="w-14 h-14 bg-white dark:bg-zinc-900 rounded-2xl shadow-lg flex items-center justify-center text-primary text-2xl shrink-0">
+                                <i class="fas fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Studio Location</h4>
+                                <p class="text-zinc-500">123 Artsy Lane, Creative District<br>New York, NY 10001</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col md:flex-row items-center md:items-start text-center md:text-left space-y-4 md:space-y-0 md:space-x-6">
+                            <div
+                                class="w-14 h-14 bg-white dark:bg-zinc-900 rounded-2xl shadow-lg flex items-center justify-center text-primary text-2xl shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Email Us</h4>
+                                <p class="text-zinc-500">hello@muralartshop.com<br>quotes@muralartshop.com</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col md:flex-row items-center md:items-start text-center md:text-left space-y-4 md:space-y-0 md:space-x-6">
+                            <div
+                                class="w-14 h-14 bg-white dark:bg-zinc-900 rounded-2xl shadow-lg flex items-center justify-center text-primary text-2xl shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Call Us</h4>
+                                <p class="text-zinc-500">+1 (555) 123-4567<br>Mon-Fri, 9am - 6pm EST</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 pt-10 border-t border-zinc-200 dark:border-zinc-800">
+                        <h4 class="font-bold mb-6">Follow Our Journey</h4>
+                        <div class="flex space-x-6">
+                            <a href="#" class="text-2xl text-zinc-400 hover:text-primary transition-colors"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-2xl text-zinc-400 hover:text-primary transition-colors"><i
+                                    class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-2xl text-zinc-400 hover:text-primary transition-colors"><i
+                                    class="fab fa-behance"></i></a>
+                            <a href="#" class="text-2xl text-zinc-400 hover:text-primary transition-colors"><i
+                                    class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div
+                    class="bg-white dark:bg-zinc-900 rounded-[3rem] p-8 md:p-12 shadow-2xl border border-zinc-100 dark:border-zinc-800">
+                    <h3 class="text-3xl font-bold mb-10">Send a Message</h3>
+                    <form @submit.prevent="" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500">Your
+                                    Name</label>
+                                <input type="text"
+                                    class="w-full bg-zinc-50 dark:bg-zinc-800/50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none"
+                                    placeholder="Jane Smith">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500">Your
+                                    Email</label>
+                                <input type="email"
+                                    class="w-full bg-zinc-50 dark:bg-zinc-800/50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none"
+                                    placeholder="jane@example.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500">Subject</label>
+                            <select
+                                class="w-full bg-zinc-50 dark:bg-zinc-800/50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none appearance-none">
+                                <option>General Inquiry</option>
+                                <option>Mural Quote</option>
+                                <option>Collaborations</option>
+                                <option>Media/Press</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500">Message</label>
+                            <textarea rows="6"
+                                class="w-full bg-zinc-50 dark:bg-zinc-800/50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none"
+                                placeholder="How can we help you?"></textarea>
+                        </div>
+                        <div class="flex justify-center">
+                            <button type="submit"
+                                class="w-max bg-primary text-white py-3 px-10 rounded-xl font-bold text-base hover:bg-primary-dark transition-colors shadow-xl shadow-primary/30">Send
+                                Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Map Placeholder -->
+            <div
+                class="mt-24 bg-zinc-100 dark:bg-zinc-800 rounded-[3rem] h-96 flex items-center justify-center overflow-hidden border border-zinc-200 dark:border-zinc-800 relative">
+                <div class="absolute inset-0 opacity-20 grayscale">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1600" alt="Map"
+                        class="w-full h-full object-cover">
+                </div>
+                <div
+                    class="relative z-10 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md p-6 rounded-3xl border border-white/20 shadow-xl flex flex-col items-center">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-location-dot"></i>
+                    </div>
+                    <span class="font-bold text-zinc-900 dark:text-white">Studio Visit by Appointment Only</span>
+                </div>
+            </div>
+            <!-- Wall Prep 101 Guide -->
+            <div class="mt-32 border-t border-zinc-200 dark:border-zinc-800 pt-24 text-zinc-900 dark:text-zinc-100">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="font-heading text-4xl font-bold mb-6">Wall Prep <span
+                            class="text-primary italic">101</span></h2>
+                    <p class="text-zinc-500 text-lg">Ensuring your surface is ready for a masterpiece. Follow these
+                        simple steps before we arrive.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-sm border border-zinc-100 dark:border-zinc-800">
+                        <div
+                            class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl mb-6 font-bold">
+                            1</div>
+                        <h4 class="font-bold mb-4 text-xl text-zinc-900 dark:text-white">Clean Surface</h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed">The wall should be free of dust, grease, and
+                            cobwebs. A simple wipe-down with a damp cloth a day before is usually enough.</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-sm border border-zinc-100 dark:border-zinc-800 relative md:-translate-y-4">
+                        <div
+                            class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl mb-6 font-bold">
+                            2</div>
+                        <h4 class="font-bold mb-4 text-xl">Minor Repairs</h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed">Patch any significant holes or cracks. While we
+                            can paint over minor textures, a smooth surface yields the sharpest results.</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-zinc-900 p-8 rounded-3xl shadow-sm border border-zinc-100 dark:border-zinc-800">
+                        <div
+                            class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center text-xl mb-6 font-bold">
+                            3</div>
+                        <h4 class="font-bold mb-4 text-xl">Clear the Way</h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed">Please move furniture at least 5-6 feet away
+                            from the wall. We'll handle the drop-cloths and surface protection once we arrive.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="mt-16 bg-zinc-900 text-white p-10 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="flex items-center space-x-6">
+                        <div
+                            class="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary text-3xl shrink-0">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-1">Not sure about your wall?</h4>
+                            <p class="text-zinc-400">Send us a photo of the surface and we'll give you specific advice.
+                            </p>
+                        </div>
+                    </div>
+                    <a href="booking.html"
+                        class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg shadow-primary/20 shrink-0">Upload
+                        Photos</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scroll-up Button -->
+    <button @click="window.scrollTo({ top: 0, behavior: 'smooth' })" x-show="scrolled"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-y-10 opacity-0"
+        x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-10 opacity-0"
+        class="fixed bottom-8 right-8 z-[100] w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

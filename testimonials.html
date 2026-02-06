@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | Client Stories | Mural Art</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖌️</text></svg>">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#D4AF37', dark: '#B8860B', light: '#F4E0A1' },
+                        secondary: '#1A1A1A',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body x-data="{ 
+    darkMode: localStorage.getItem('darkMode') === 'true', 
+    mobileMenuOpen: false,
+    scrolled: false,
+    activePage: 'testimonials'
+}" :class="{ 'dark': darkMode }"
+    class="bg-gray-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans"
+    @scroll.window="scrolled = (window.pageYOffset > 20)">
+    <!-- Navbar -->
+    <header
+        :class="{ 'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm py-3 text-zinc-900 dark:text-white': scrolled, 'bg-transparent py-5 text-zinc-900 dark:text-white': !scrolled }"
+        class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-2 group h-12">
+                <div
+                    class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl font-bold transition-transform group-hover:scale-110">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <span class="font-heading text-xl md:text-2xl font-bold tracking-tight"
+                    :class="{ 'text-zinc-900 dark:text-white': scrolled, 'text-zinc-900 dark:text-white': !scrolled }">MURAL<span
+                        class="text-primary">ART</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center space-x-1">
+                <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'home' ? 'bg-primary text-white' : 'hover:text-primary'">Home</a>
+                <a href="home2.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'home2' ? 'bg-primary text-white' : 'hover:text-primary'">Campaign</a>
+                <a href="portfolio.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'portfolio' ? 'bg-primary text-white' : 'hover:text-primary'">Portfolio</a>
+                <a href="services.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'services' ? 'bg-primary text-white' : 'hover:text-primary'">Services</a>
+
+                <!-- More Dropdown -->
+                <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button
+                        :class="['process', 'pricing', 'about', 'testimonials', 'blog'].includes(activePage) ? 'bg-primary text-white' : 'hover:text-primary'"
+                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center space-x-1">
+                        <span>More</span>
+                        <i class="fas fa-chevron-down text-[10px]" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-transition
+                        class="absolute top-full left-0 w-48 mt-1 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-100 dark:border-zinc-800 py-2 text-zinc-900 dark:text-white">
+                        <a href="process.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'process' ? 'text-primary font-bold' : ''">Process</a>
+                        <a href="pricing.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'pricing' ? 'text-primary font-bold' : ''">Pricing</a>
+                        <a href="about.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'about' ? 'text-primary font-bold' : ''">About</a>
+                        <a href="testimonials.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'testimonials' ? 'text-primary font-bold' : ''">Testimonials</a>
+                        <a href="blog.html"
+                            class="block px-4 py-2 text-sm hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                            :class="activePage === 'blog' ? 'text-primary font-bold' : ''">Art
+                            Journal</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                    :class="activePage === 'contact' ? 'bg-primary text-white' : 'hover:text-primary'">Contact</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle -->
+                <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
+                    class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                    <i x-show="!darkMode" class="fas fa-moon text-zinc-600"></i>
+                    <i x-show="darkMode" class="fas fa-sun text-primary"></i>
+                </button>
+
+                <a href="booking.html"
+                    class="hidden md:flex bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-primary/25 hover:scale-105 active:scale-95">
+                    Book Now
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button @click="mobileMenuOpen = true" class="lg:hidden p-2 text-zinc-600 dark:text-zinc-400">
+                    <i class="fas fa-bars-staggered text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Slide-in Panel -->
+    <div x-show="mobileMenuOpen" class="fixed inset-0 z-[60] lg:hidden" x-transition.opacity>
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-zinc-900/60 backdrop-blur-sm" @click="mobileMenuOpen = false"></div>
+
+        <!-- Panel -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full"
+            class="absolute inset-y-0 left-0 w-80 bg-white dark:bg-zinc-950 shadow-2xl flex flex-col">
+
+            <div class="p-6 flex items-center justify-between border-b dark:border-zinc-800">
+                <div class="flex items-center space-x-2">
+                    <div
+                        class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-lg font-bold">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <span class="font-heading text-lg font-bold">MURAL ART</span>
+                </div>
+                <button @click="mobileMenuOpen = false"
+                    class="p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto py-6 px-4">
+                <nav class="space-y-4">
+                    <a href="index.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Home</a>
+                    <a href="home2.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Campaign</a>
+                    <a href="portfolio.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Portfolio</a>
+                    <a href="services.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Services</a>
+                    <a href="process.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Process</a>
+                    <a href="pricing.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Pricing</a>
+                    <a href="about.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">About</a>
+                    <a href="contact.html"
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Contact</a>
+                </nav>
+            </div>
+
+            <div class="p-6 border-t dark:border-zinc-800">
+                <a href="booking.html"
+                    class="w-full flex items-center justify-center bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-primary-dark transition-colors">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24">
+        <!-- Hero -->
+        <div class="container mx-auto px-4 md:px-6 mb-20 text-center">
+            <h1 class="font-heading text-5xl md:text-7xl font-extrabold mb-6">Client <span
+                    class="text-primary italic">Stories</span></h1>
+            <p class="text-zinc-600 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                Don't just take our word for it. Hear from the people who live and work in the spaces we've transformed.
+            </p>
+        </div>
+
+        <!-- Featured Testimonial -->
+        <div class="container mx-auto px-4 md:px-6 mb-32">
+            <div class="bg-primary text-white rounded-[3rem] p-12 md:p-20 relative overflow-hidden shadow-2xl">
+                <div class="absolute -top-20 -right-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <i class="fas fa-quote-left text-6xl mb-12 opacity-30"></i>
+                    <p class="text-2xl md:text-4xl font-bold max-w-4xl italic mb-12 leading-tight">
+                        "The mural in our café has become the primary attraction for our customers. It gave the space a
+                        soul we didn't know it needed. Elias is a true professional."
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-20 h-20 bg-white/20 rounded-full overflow-hidden border-4 border-white/30">
+                            <img src="https://i.pravatar.cc/150?u=4" alt="Featured Client">
+                        </div>
+                        <div class="text-left">
+                            <h4 class="text-2xl font-bold">Marco Russo</h4>
+                            <p class="text-white/70">Founder of Ciao Café</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div
+                    class="bg-white dark:bg-zinc-900 p-10 rounded-3xl shadow-xl border border-zinc-100 dark:border-zinc-800 flex flex-col h-full">
+                    <div class="flex items-center justify-center space-x-1 text-primary mb-6">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-zinc-600 dark:text-zinc-300 mb-8 italic flex-grow text-center">"Incredible attention
+                        to detail.
+                        The colors are even more vibrant in person! Elias spent a full day just getting the skin tones
+                        right on my portrait mural."</p>
+                    <div class="mb-6 p-4 bg-zinc-50 dark:bg-zinc-800/50 rounded-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1">The
+                            Project</span>
+                        <p class="text-xs font-bold text-zinc-900 dark:text-zinc-200">"Radiant Soul" Portrait • 120 sq
+                            ft • Master Bedroom</p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="w-12 h-12 bg-zinc-100 rounded-full overflow-hidden border-2 border-primary/20">
+                            <img src="https://i.pravatar.cc/100?u=5" alt="User">
+                        </div>
+                        <div class="text-left">
+                            <h5 class="font-bold text-zinc-900 dark:text-white">Lila Green</h5>
+                            <p class="text-xs text-zinc-500">Home Owner, Brooklyn</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div
+                    class="bg-white dark:bg-zinc-900 p-10 rounded-3xl shadow-xl border border-zinc-100 dark:border-zinc-800 flex flex-col h-full">
+                    <div class="flex items-center justify-center space-x-1 text-primary mb-6">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-zinc-600 dark:text-zinc-300 mb-8 italic flex-grow text-center">"Elias understood our
+                        brand
+                        perfectly. He integrated our logo into a botanical scene that feels organic and professional.
+                        Truly transformed our office culture."</p>
+                    <div class="mb-6 p-4 bg-zinc-50 dark:bg-zinc-800/50 rounded-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1">The
+                            Project</span>
+                        <p class="text-xs font-bold text-zinc-900 dark:text-zinc-200">"Peak Growth" Mural • 450 sq ft •
+                            Corporate HQ</p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="w-12 h-12 bg-zinc-100 rounded-full overflow-hidden border-2 border-primary/20">
+                            <img src="https://i.pravatar.cc/100?u=6" alt="User">
+                        </div>
+                        <div class="text-left">
+                            <h5 class="font-bold text-zinc-900 dark:text-white">James Chen</h5>
+                            <p class="text-xs text-zinc-500">Marketing Director, Peak Co.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div
+                    class="bg-white dark:bg-zinc-900 p-10 rounded-3xl shadow-xl border border-zinc-100 dark:border-zinc-800 flex flex-col h-full">
+                    <div class="flex items-center justify-center space-x-1 text-primary mb-6">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i>
+                    </div>
+                    <p class="text-zinc-600 dark:text-zinc-300 mb-8 italic flex-grow text-center">"As a designer, I'm
+                        picky about
+                        execution. Elias's linework is impeccable. The process from sketch to final wall was seamless
+                        and collaborative."</p>
+                    <div class="mb-6 p-4 bg-zinc-50 dark:bg-zinc-800/50 rounded-2xl">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-primary block mb-1">The
+                            Project</span>
+                        <p class="text-xs font-bold text-zinc-900 dark:text-zinc-200">"Geometric Flow" • 200 sq ft •
+                            Modern Loft</p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="w-12 h-12 bg-zinc-100 rounded-full overflow-hidden border-2 border-primary/20">
+                            <img src="https://i.pravatar.cc/100?u=7" alt="User">
+                        </div>
+                        <div class="text-left">
+                            <h5 class="font-bold text-zinc-900 dark:text-white">Sophie Taylor</h5>
+                            <p class="text-xs text-zinc-500">Interior Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Testimonials Placeholder -->
+            <div class="mt-32">
+                <div class="text-center mb-16">
+                    <h2 class="font-heading text-4xl font-bold mb-6">Stories from <span class="text-primary italic">the
+                            Wall</span></h2>
+                    <p class="text-zinc-500 text-lg">Watch our clients share their transformation journey.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div
+                        class="group relative rounded-[2.5rem] overflow-hidden aspect-video bg-zinc-200 dark:bg-zinc-800 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800"
+                            class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button
+                                class="w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center text-2xl shadow-2xl transition-transform group-hover:scale-110">
+                                <i class="fas fa-play ml-1"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-6 left-8">
+                            <h4 class="text-white font-bold text-xl">The Brew & Brush Transformation</h4>
+                            <p class="text-white/70 text-sm">Full Interior Build-out • 2025</p>
+                        </div>
+                    </div>
+                    <div
+                        class="group relative rounded-[2.5rem] overflow-hidden aspect-video bg-zinc-200 dark:bg-zinc-800 shadow-2xl">
+                        <img src="assets/Community Heartbeat Mural.jpg"
+                            class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button
+                                class="w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center text-2xl shadow-2xl transition-transform group-hover:scale-110">
+                                <i class="fas fa-play ml-1"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-6 left-8">
+                            <h4 class="text-white font-bold text-xl">Community Heartbeat Mural</h4>
+                            <p class="text-white/70 text-sm">Public Art Project • 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-16">
+            <button
+                class="bg-primary hover:bg-primary-dark text-white px-10 py-4 rounded-full font-bold transition-all shadow-xl shadow-primary/20">Read
+                More Reviews</button>
+        </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-white pt-20 pb-10">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <div class="pt-8 border-t border-zinc-800 text-zinc-500 text-sm">
+                &copy; 2026 Mural Art Commission. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll-up Button -->
+    <button @click="window.scrollTo({ top: 0, behavior: 'smooth' })" x-show="scrolled"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-y-10 opacity-0"
+        x-transition:enter-end="translate-y-0 opacity-100" x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="translate-y-0 opacity-100" x-transition:leave-end="translate-y-10 opacity-0"
+        class="fixed bottom-8 right-8 z-[100] w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

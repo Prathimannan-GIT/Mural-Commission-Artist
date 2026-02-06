@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Mural Art Commission</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#D4AF37', dark: '#B8860B', light: '#F4E0A1' },
+                        secondary: '#1A1A1A',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body x-data="{ 
+    darkMode: localStorage.getItem('darkMode') === 'true', 
+    mobileMenuOpen: false,
+    scrolled: false,
+    activePage: 'legal'
+}" :class="{ 'dark': darkMode }"
+    class="bg-gray-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans"
+    @scroll.window="scrolled = (window.pageYOffset > 20)">
+
+    <!-- Navbar -->
+    <header
+        :class="{ 'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm py-3': scrolled, 'bg-transparent py-5': !scrolled }"
+        class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 flex items-center justify-between h-16 md:h-20">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div
+                    class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl font-bold">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <span class="font-heading text-xl md:text-2xl font-bold text-zinc-900 dark:text-white">MURAL<span
+                        class="text-primary">ART</span></span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
+                    class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+                    <i x-show="!darkMode" class="fas fa-moon text-zinc-600"></i>
+                    <i x-show="darkMode" class="fas fa-sun text-primary"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24">
+        <div class="container mx-auto px-4 md:px-6 max-w-3xl">
+            <h1 class="font-heading text-4xl md:text-5xl font-extrabold mb-10">Privacy Policy</h1>
+
+            <div class="prose dark:prose-invert max-w-none space-y-8">
+                <section>
+                    <h2 class="text-2xl font-bold mb-4 border-b pb-2">1. Introduction</h2>
+                    <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                        At Mural Art Commission, we take your privacy seriously. This policy explains how we collect,
+                        use, and protect your personal information when you use our website. We are committed to
+                        ensuring
+                        that your personal data is handled in a way that respects your rights and the law.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4 border-b pb-2">2. Information We Collect</h2>
+                    <div class="space-y-4">
+                        <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                            We collect information you provide directly to us, including:
+                        </p>
+                        <ul class="list-disc pl-6 text-zinc-600 dark:text-zinc-400 space-y-2">
+                            <li>Personal identifiers (Name, Email, Phone Number)</li>
+                            <li>Project details and artistic preferences</li>
+                            <li>Financial information for transaction processing (managed by third-party processors)
+                            </li>
+                            <li>Communication history between you and the artist</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4 border-b pb-2">3. How We Use Your Data</h2>
+                    <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                        Your data is used solely for:
+                    </p>
+                    <ul class="list-disc pl-6 text-zinc-600 dark:text-zinc-400 space-y-2">
+                        <li>Fulfilling your commission requests and providing artistic services</li>
+                        <li>Improving our website experience and customer support</li>
+                        <li>Sending project updates and (if opted-in) marketing newsletters</li>
+                        <li>Complying with legal and safety requirements</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4 border-b pb-2">4. Data Security</h2>
+                    <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                        We implement enterprise-grade security measures including SSL encryption and restricted data
+                        access
+                        to protect your personal information from unauthorized access, alteration, or destruction.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4 border-b pb-2">5. Your Rights</h2>
+                    <p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                        You have the right to access, correct, or delete your personal data. To exercise these rights,
+                        please contact us at hello@muralartshop.com.
+                    </p>
+                </section>
+            </div>
+
+            <div class="mt-20 pt-10 border-t border-zinc-200 dark:border-zinc-800">
+                <p class="text-sm text-zinc-500">Last updated: January 2026</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-white py-10">
+        <div class="container mx-auto px-4 text-center text-zinc-500 text-sm italic">
+            &copy; 2026 Mural Art Commission.
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
