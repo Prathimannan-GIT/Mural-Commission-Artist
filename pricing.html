@@ -404,10 +404,94 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-zinc-900 text-white pt-20 pb-10">
-        <div class="container mx-auto px-4 md:px-6 text-center">
-            <div class="pt-8 border-t border-zinc-800 text-zinc-500 text-sm">
-                &copy; 2026 Mural Art Commission. All rights reserved.
+    <footer class="bg-zinc-900 text-white pt-20 pb-10 border-t border-zinc-800">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <a href="index.html" class="flex items-center space-x-2 mb-6">
+                        <div
+                            class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl font-bold">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <span class="font-heading text-2xl font-bold tracking-tight">MURAL<span
+                                class="text-primary">ART</span></span>
+                    </a>
+                    <p class="text-zinc-400 mb-8 leading-relaxed">
+                        Redefining spaces through large-scale art. From initial sketch to final varnish, we bring your
+                        vision to life on any surface.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center transition-all hover:bg-primary hover:-translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center transition-all hover:bg-primary hover:-translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center transition-all hover:bg-primary hover:-translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="portfolio.html"
+                                class="text-zinc-400 hover:text-white transition-colors">Portifolio</a></li>
+                        <li><a href="services.html"
+                                class="text-zinc-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="process.html" class="text-zinc-400 hover:text-white transition-colors">How it
+                                Works</a></li>
+                        <li><a href="pricing.html" class="text-zinc-400 hover:text-white transition-colors">Pricing</a>
+                        </li>
+                        <li><a href="blog.html" class="text-zinc-400 hover:text-white transition-colors">Art Journal</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6">Specialties</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Office Murals</a></li>
+                        <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Residential Art</a>
+                        </li>
+                        <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Street Art</a></li>
+                        <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Community Projects</a>
+                        </li>
+                        <li><a href="#" class="text-zinc-400 hover:text-white transition-colors">Live Painting</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6">Get Art Updates</h4>
+                    <p class="text-zinc-400 mb-6">Join my newsletter for behind-the-scenes content and exclusive offers.
+                    </p>
+                    <form @submit.prevent="" class="relative">
+                        <input type="email" placeholder="Your email"
+                            class="w-full bg-zinc-800 border-none rounded-full py-4 px-6 text-white focus:ring-2 focus:ring-primary outline-none">
+                        <button
+                            class="absolute right-2 top-2 bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full font-bold transition-colors">
+                            Join
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-zinc-500 text-sm italic">
+                    &copy; 2026 Mural Art Commission. All rights reserved. Artist: [Your Name]
+                </p>
+                <div class="flex space-x-6 text-sm">
+                    <a href="privacy.html" class="text-zinc-500 hover:text-white">Privacy Policy</a>
+                    <a href="terms.html" class="text-zinc-500 hover:text-white">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>

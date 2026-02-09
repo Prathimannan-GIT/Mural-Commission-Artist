@@ -74,27 +74,26 @@
                     class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl font-bold transition-transform group-hover:scale-110">
                     <i class="fas fa-paint-brush"></i>
                 </div>
-                <span class="font-heading text-xl md:text-2xl font-bold tracking-tight"
-                    :class="{ 'text-zinc-900 dark:text-white': scrolled, 'text-white': !scrolled }">MURAL<span
+                <span class="font-heading text-xl md:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">MURAL<span
                         class="text-primary">ART</span></span>
             </a>
 
             <!-- Desktop Nav -->
             <nav class="hidden lg:flex items-center space-x-1">
-                <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
-                    :class="activePage === 'home' ? 'bg-primary text-white' : 'hover:text-primary'">Home</a>
-                <a href="home2.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
-                    :class="activePage === 'home2' ? 'bg-primary text-white' : 'hover:text-primary'">Campaign</a>
-                <a href="portfolio.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
-                    :class="activePage === 'portfolio' ? 'bg-primary text-white' : 'hover:text-primary'">Portfolio</a>
-                <a href="services.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
-                    :class="activePage === 'services' ? 'bg-primary text-white' : 'hover:text-primary'">Services</a>
+                <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary"
+                    :class="activePage === 'home' ? 'bg-primary text-white' : ''">Home</a>
+                <a href="home2.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary"
+                    :class="activePage === 'home2' ? 'bg-primary text-white' : ''">Campaign</a>
+                <a href="portfolio.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary"
+                    :class="activePage === 'portfolio' ? 'bg-primary text-white' : ''">Portfolio</a>
+                <a href="services.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary"
+                    :class="activePage === 'services' ? 'bg-primary text-white' : ''">Services</a>
 
                 <!-- More Dropdown -->
                 <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button
-                        :class="['process', 'pricing', 'about', 'testimonials', 'blog'].includes(activePage) ? 'bg-primary text-white' : 'hover:text-primary'"
-                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center space-x-1">
+                        :class="['process', 'pricing', 'about', 'testimonials', 'blog'].includes(activePage) ? 'bg-primary text-white' : ''"
+                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center space-x-1 text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary">
                         <span>More</span>
                         <i class="fas fa-chevron-down text-[10px]" :class="open ? 'rotate-180' : ''"></i>
                     </button>
@@ -119,8 +118,8 @@
                     </div>
                 </div>
 
-                <a href="contact.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
-                    :class="activePage === 'contact' ? 'bg-primary text-white' : 'hover:text-primary'">Contact</a>
+                <a href="contact.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary"
+                    :class="activePage === 'contact' ? 'bg-primary text-white' : ''">Contact</a>
             </nav>
 
             <!-- Actions -->
@@ -128,8 +127,7 @@
                 <!-- Theme Toggle -->
                 <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)"
                     class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                    <i x-show="!darkMode" class="fas fa-moon"
-                        :class="{ 'text-zinc-600': scrolled, 'text-white': !scrolled }"></i>
+                    <i x-show="!darkMode" class="fas fa-moon text-zinc-600 dark:text-zinc-400"></i>
                     <i x-show="darkMode" class="fas fa-sun text-primary"></i>
                 </button>
 
@@ -139,8 +137,7 @@
                 </a>
 
                 <!-- Mobile Menu Button -->
-                <button @click="mobileMenuOpen = true" class="lg:hidden p-2"
-                    :class="{ 'text-zinc-600 dark:text-zinc-400': scrolled, 'text-white': !scrolled }">
+                <button @click="mobileMenuOpen = true" class="lg:hidden p-2 text-zinc-600 dark:text-zinc-400">
                     <i class="fas fa-bars-staggered text-2xl"></i>
                 </button>
             </div>
@@ -165,7 +162,7 @@
                         class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-lg font-bold">
                         <i class="fas fa-paint-brush"></i>
                     </div>
-                    <span class="font-heading text-lg font-bold">MURAL ART</span>
+                    <span class="font-heading text-lg font-bold text-zinc-900 dark:text-white">MURAL ART</span>
                 </div>
                 <button @click="mobileMenuOpen = false"
                     class="p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white">
@@ -176,21 +173,21 @@
             <div class="flex-1 overflow-y-auto py-6 px-4">
                 <nav class="space-y-4">
                     <a href="index.html"
-                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Home</a>
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-zinc-700 dark:text-zinc-300">Home</a>
                     <a href="home2.html"
-                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Campaign</a>
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-zinc-700 dark:text-zinc-300">Campaign</a>
                     <a href="portfolio.html"
-                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Portfolio</a>
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-zinc-700 dark:text-zinc-300">Portfolio</a>
                     <a href="services.html"
-                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Services</a>
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-zinc-700 dark:text-zinc-300">Services</a>
                     <a href="process.html"
-                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Process</a>
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-zinc-700 dark:text-zinc-300">Process</a>
                     <a href="pricing.html"
-                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Pricing</a>
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-zinc-700 dark:text-zinc-300">Pricing</a>
                     <a href="about.html"
-                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">About</a>
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-zinc-700 dark:text-zinc-300">About</a>
                     <a href="contact.html"
-                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">Contact</a>
+                        class="block px-4 py-3 rounded-xl text-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-zinc-700 dark:text-zinc-300">Contact</a>
                 </nav>
             </div>
 
@@ -221,10 +218,10 @@
                     <span
                         class="inline-block px-4 py-1.5 bg-primary/20 text-primary text-sm font-bold tracking-widest uppercase rounded-full mb-6">Masterpieces
                         on Walls</span>
-                    <h1 class="font-heading text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
+                    <h1 class="font-heading text-5xl md:text-7xl font-extrabold text-white dark:text-white leading-tight mb-6">
                         Transforming <span class="text-primary italic">Walls</span> <br> into Stories
                     </h1>
-                    <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+                    <p class="text-gray-300 dark:text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
                         Hand-painted custom murals for residential, commercial, and public spaces.
                         Bringing life and character to your environment through bespoke artistic vision.
                     </p>
@@ -254,10 +251,10 @@
             <div class="container mx-auto px-4 md:px-6">
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                     <div>
-                        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Featured Murals</h2>
+                        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4 text-zinc-900 dark:text-white">Featured Murals</h2>
                         <div class="w-20 h-1.5 bg-primary rounded-full"></div>
                     </div>
-                    <a href="portfolio.html" class="text-primary font-bold hover:underline flex items-center space-x-2">
+                    <a href="portfolio.html" class="text-primary font-bold hover:underline flex items-center space-x-2 dark:text-primary">
                         <span>View All Projects</span>
                         <i class="fas fa-arrow-right text-sm"></i>
                     </a>
@@ -276,7 +273,7 @@
                             class="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-500 group-hover:-translate-y-2">
                             <span
                                 class="text-primary text-sm font-bold uppercase tracking-widest mb-2 block">Residential</span>
-                            <h3 class="text-white text-2xl font-bold mb-4">Floral Haven Study</h3>
+                            <h3 class="text-white dark:text-white text-2xl font-bold mb-4">Floral Haven Study</h3>
                             <a href="#"
                                 class="inline-flex items-center justify-center w-12 h-12 bg-white rounded-full text-zinc-950 hover:bg-primary hover:text-white transition-colors">
                                 <i class="fas fa-arrow-right"></i>
@@ -296,7 +293,7 @@
                             class="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-500 group-hover:-translate-y-2">
                             <span
                                 class="text-primary text-sm font-bold uppercase tracking-widest mb-2 block">Commercial</span>
-                            <h3 class="text-white text-2xl font-bold mb-4">Urban Rhythm Cafe</h3>
+                            <h3 class="text-white dark:text-white text-2xl font-bold mb-4">Urban Rhythm Cafe</h3>
                             <a href="#"
                                 class="inline-flex items-center justify-center w-12 h-12 bg-white rounded-full text-zinc-950 hover:bg-primary hover:text-white transition-colors">
                                 <i class="fas fa-arrow-right"></i>
@@ -316,7 +313,7 @@
                             class="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-500 group-hover:-translate-y-2">
                             <span class="text-primary text-sm font-bold uppercase tracking-widest mb-2 block">Public
                                 Space</span>
-                            <h3 class="text-white text-2xl font-bold mb-4">community Soul Plaza</h3>
+                            <h3 class="text-white dark:text-white text-2xl font-bold mb-4">community Soul Plaza</h3>
                             <a href="#"
                                 class="inline-flex items-center justify-center w-12 h-12 bg-white rounded-full text-zinc-950 hover:bg-primary hover:text-white transition-colors">
                                 <i class="fas fa-arrow-right"></i>
@@ -340,7 +337,7 @@
                         <div class="absolute -bottom-10 -right-10 w-60 h-60 bg-primary/10 rounded-full blur-3xl"></div>
                     </div>
                     <div>
-                        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-8">Why Choose <span
+                        <h2 class="font-heading text-3xl md:text-5xl font-bold mb-8 text-zinc-900 dark:text-white">Why Choose <span
                                 class="text-primary">Me</span>?</h2>
                         <div class="space-y-8">
                             <div class="flex items-start space-x-6">
@@ -349,8 +346,8 @@
                                     <i class="fas fa-palette"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-xl font-bold mb-2">Unique Custom Designs</h4>
-                                    <p class="text-zinc-600 dark:text-zinc-400">Every mural is a custom creation
+                                    <h4 class="text-xl font-bold mb-2 text-zinc-900 dark:text-white">Unique Custom Designs</h4>
+                                    <p class="text-zinc-600 dark:text-zinc-700 dark:text-white">Every mural is a custom creation
                                         tailored to your space, lighting, and personal style. No templates, just
                                         original art.</p>
                                 </div>
@@ -361,8 +358,8 @@
                                     <i class="fas fa-award"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-xl font-bold mb-2">10+ Years Experience</h4>
-                                    <p class="text-zinc-600 dark:text-zinc-400">Decade of experience painting
+                                    <h4 class="text-xl font-bold mb-2 text-zinc-900 dark:text-white">10+ Years Experience</h4>
+                                    <p class="text-zinc-600 dark:text-zinc-700 dark:text-white">Decade of experience painting
                                         large-scale works in diverse environments, from boutiques to public
                                         institutions.</p>
                                 </div>
@@ -373,8 +370,8 @@
                                     <i class="fas fa-shield-halved"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-xl font-bold mb-2">Quality & Durability</h4>
-                                    <p class="text-zinc-600 dark:text-zinc-400">Using only premium, UV-resistant paints
+                                    <h4 class="text-xl font-bold mb-2 text-zinc-900 dark:text-white">Quality & Durability</h4>
+                                    <p class="text-zinc-600 dark:text-zinc-700 dark:text-white">Using only premium, UV-resistant paints
                                         and protective coatings to ensure your investment lasts for decades.</p>
                                 </div>
                             </div>
@@ -387,7 +384,7 @@
         <section class="py-24 bg-white dark:bg-zinc-900 overflow-hidden">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="text-center max-w-3xl mx-auto mb-16 px-4">
-                    <h2 class="font-heading text-3xl md:text-5xl font-bold mb-6">Common Questions</h2>
+                    <h2 class="font-heading text-3xl md:text-5xl font-bold mb-6 text-zinc-900 dark:text-white">Common Questions</h2>
                     <p class="text-zinc-600 dark:text-zinc-400 text-lg">Everything you need to know about the mural
                         commission process, from timelines to maintenance.</p>
                 </div>
@@ -398,7 +395,7 @@
                         class="bg-zinc-50 dark:bg-zinc-800/30 rounded-3xl p-8 transition-all hover:bg-white dark:hover:bg-zinc-800 border border-transparent hover:border-primary/20">
                         <button @click="active = active === 1 ? null : 1"
                             class="w-full flex items-center justify-between text-left focus:outline-none">
-                            <h4 class="text-lg font-bold">How long does a mural take?</h4>
+                            <h4 class="text-lg font-bold dark:text-zinc-500 dark:text-white">How long does a mural take?</h4>
                             <i class="fas fa-chevron-down text-sm transition-transform duration-300"
                                 :class="active === 1 ? 'rotate-180 text-primary' : ''"></i>
                         </button>
@@ -414,7 +411,7 @@
                         class="bg-zinc-50 dark:bg-zinc-800/30 rounded-3xl p-8 transition-all hover:bg-white dark:hover:bg-zinc-800 border border-transparent hover:border-primary/20">
                         <button @click="active = active === 2 ? null : 2"
                             class="w-full flex items-center justify-between text-left focus:outline-none">
-                            <h4 class="text-lg font-bold">Do you work outdoors?</h4>
+                            <h4 class="text-lg font-bold dark:text-zinc-500 dark:text-white">Do you work outdoors?</h4>
                             <i class="fas fa-chevron-down text-sm transition-transform duration-300"
                                 :class="active === 2 ? 'rotate-180 text-primary' : ''"></i>
                         </button>
@@ -430,7 +427,7 @@
                         class="bg-zinc-50 dark:bg-zinc-800/30 rounded-3xl p-8 transition-all hover:bg-white dark:hover:bg-zinc-800 border border-transparent hover:border-primary/20">
                         <button @click="active = active === 3 ? null : 3"
                             class="w-full flex items-center justify-between text-left focus:outline-none">
-                            <h4 class="text-lg font-bold">What's the pricing model?</h4>
+                            <h4 class="text-lg font-bold dark:text-zinc-500 dark:text-white">What's the pricing model?</h4>
                             <i class="fas fa-chevron-down text-sm transition-transform duration-300"
                                 :class="active === 3 ? 'rotate-180 text-primary' : ''"></i>
                         </button>
@@ -447,7 +444,7 @@
                         class="bg-zinc-50 dark:bg-zinc-800/30 rounded-3xl p-8 transition-all hover:bg-white dark:hover:bg-zinc-800 border border-transparent hover:border-primary/20">
                         <button @click="active = active === 4 ? null : 4"
                             class="w-full flex items-center justify-between text-left focus:outline-none">
-                            <h4 class="text-lg font-bold">Is design included?</h4>
+                            <h4 class="text-lg font-bold dark:text-zinc-500 dark:text-white">Is design included?</h4>
                             <i class="fas fa-chevron-down text-sm transition-transform duration-300"
                                 :class="active === 4 ? 'rotate-180 text-primary' : ''"></i>
                         </button>
@@ -568,7 +565,7 @@
         <section class="py-24 bg-white dark:bg-zinc-900 overflow-hidden border-t dark:border-zinc-800">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="text-center mb-16">
-                    <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4">Follow the Journey</h2>
+                    <h2 class="font-heading text-3xl md:text-5xl font-bold mb-4 dark:text-white">Follow the Journey</h2>
                     <p class="text-primary font-bold text-lg tracking-widest uppercase">@muralart_studio</p>
                 </div>
 

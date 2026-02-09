@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { DEFAULT: '#D4AF37', dark: '#B8860B', light: '#F4E0A1' },
+                        secondary: '#1A1A1A',
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
+    <div class="p-8">
+        <button onclick="document.documentElement.classList.toggle('dark')" class="mb-4 px-4 py-2 bg-primary text-white rounded">
+            Toggle Dark Mode
+        </button>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Test Gallery Item -->
+            <div class="group relative overflow-hidden rounded-[2.5rem] shadow-xl aspect-[4/5] bg-white dark:bg-zinc-900">
+                <img src="https://images.unsplash.com/photo-1561214078-f3247647fc5e?w=800" alt="Test"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                </div>
+                <div class="absolute inset-0 p-8 flex flex-col justify-end transform translate-y-12 group-hover:translate-y-0 transition-transform duration-500 opacity-0 group-hover:opacity-100">
+                    <span class="text-primary text-sm font-bold uppercase tracking-widest mb-2">residential</span>
+                    <h3 class="text-white text-2xl font-bold mb-6">Test Project</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-white dark:bg-zinc-800 text-zinc-950 dark:text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-primary hover:text-white transition-colors">View Project</a>
+                        <button class="w-12 h-12 bg-white/20 dark:bg-zinc-800/50 backdrop-blur-md rounded-full text-white flex items-center justify-center hover:bg-white dark:hover:bg-zinc-700 hover:text-zinc-950 transition-colors">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

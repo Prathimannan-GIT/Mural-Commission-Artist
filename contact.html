@@ -55,27 +55,26 @@
                     class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl font-bold transition-transform group-hover:scale-110">
                     <i class="fas fa-paint-brush"></i>
                 </div>
-                <span class="font-heading text-xl md:text-2xl font-bold tracking-tight"
-                    :class="{ 'text-zinc-900 dark:text-white': scrolled, 'text-zinc-900 dark:text-white': !scrolled }">MURAL<span
+                <span class="font-heading text-xl md:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">MURAL<span
                         class="text-primary">ART</span></span>
             </a>
 
             <!-- Desktop Nav -->
             <nav class="hidden lg:flex items-center space-x-1">
-                <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
-                    :class="activePage === 'home' ? 'bg-primary text-white' : 'hover:text-primary'">Home</a>
-                <a href="home2.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
-                    :class="activePage === 'home2' ? 'bg-primary text-white' : 'hover:text-primary'">Campaign</a>
-                <a href="portfolio.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
-                    :class="activePage === 'portfolio' ? 'bg-primary text-white' : 'hover:text-primary'">Portfolio</a>
-                <a href="services.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
-                    :class="activePage === 'services' ? 'bg-primary text-white' : 'hover:text-primary'">Services</a>
+                <a href="index.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary"
+                    :class="activePage === 'home' ? 'bg-primary text-white' : ''">Home</a>
+                <a href="home2.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary"
+                    :class="activePage === 'home2' ? 'bg-primary text-white' : ''">Campaign</a>
+                <a href="portfolio.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary"
+                    :class="activePage === 'portfolio' ? 'bg-primary text-white' : ''">Portfolio</a>
+                <a href="services.html" class="px-4 py-2 rounded-full text-sm font-medium transition-colors text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary"
+                    :class="activePage === 'services' ? 'bg-primary text-white' : ''">Services</a>
 
                 <!-- More Dropdown -->
                 <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button
-                        :class="['process', 'pricing', 'about', 'testimonials', 'blog'].includes(activePage) ? 'bg-primary text-white' : 'hover:text-primary'"
-                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center space-x-1">
+                        :class="['process', 'pricing', 'about', 'testimonials', 'blog'].includes(activePage) ? 'bg-primary text-white' : ''"
+                        class="px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center space-x-1 text-zinc-700 dark:text-zinc-300 hover:text-primary dark:hover:text-primary">
                         <span>More</span>
                         <i class="fas fa-chevron-down text-[10px]" :class="open ? 'rotate-180' : ''"></i>
                     </button>
@@ -203,8 +202,8 @@
                                 <i class="fas fa-location-dot"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-bold mb-2">Studio Location</h4>
-                                <p class="text-zinc-500">123 Artsy Lane, Creative District<br>New York, NY 10001</p>
+                                <h4 class="text-xl font-bold mb-2 text-zinc-900 dark:text-white">Studio Location</h4>
+                                <p class="text-zinc-500 dark:text-zinc-400">123 Artsy Lane, Creative District<br>New York, NY 10001</p>
                             </div>
                         </div>
                         <div
@@ -214,8 +213,8 @@
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-bold mb-2">Email Us</h4>
-                                <p class="text-zinc-500">hello@muralartshop.com<br>quotes@muralartshop.com</p>
+                                <h4 class="text-xl font-bold mb-2 text-zinc-900 dark:text-white">Email Us</h4>
+                                <p class="text-zinc-500 dark:text-zinc-400">hello@muralartshop.com<br>quotes@muralartshop.com</p>
                             </div>
                         </div>
                         <div
@@ -225,14 +224,14 @@
                                 <i class="fas fa-phone-alt"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-bold mb-2">Call Us</h4>
-                                <p class="text-zinc-500">+1 (555) 123-4567<br>Mon-Fri, 9am - 6pm EST</p>
+                                <h4 class="text-xl font-bold mb-2 text-zinc-900 dark:text-white">Call Us</h4>
+                                <p class="text-zinc-500 dark:text-zinc-400">+1 (555) 123-4567<br>Mon-Fri, 9am - 6pm EST</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-16 pt-10 border-t border-zinc-200 dark:border-zinc-800">
-                        <h4 class="font-bold mb-6">Follow Our Journey</h4>
+                        <h4 class="font-bold mb-6 text-zinc-900 dark:text-white">Follow Our Journey</h4>
                         <div class="flex space-x-6">
                             <a href="#" class="text-2xl text-zinc-400 hover:text-primary transition-colors"><i
                                     class="fab fa-instagram"></i></a>
@@ -249,18 +248,18 @@
                 <!-- Contact Form -->
                 <div
                     class="bg-white dark:bg-zinc-900 rounded-[3rem] p-8 md:p-12 shadow-2xl border border-zinc-100 dark:border-zinc-800">
-                    <h3 class="text-3xl font-bold mb-10">Send a Message</h3>
+                    <h3 class="text-3xl font-bold mb-10 text-zinc-900 dark:text-white">Send a Message</h3>
                     <form @submit.prevent="" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500">Your
+                                <label class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Your
                                     Name</label>
                                 <input type="text"
                                     class="w-full bg-zinc-50 dark:bg-zinc-800/50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none"
                                     placeholder="Jane Smith">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500">Your
+                                <label class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Your
                                     Email</label>
                                 <input type="email"
                                     class="w-full bg-zinc-50 dark:bg-zinc-800/50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none"
@@ -269,18 +268,18 @@
                         </div>
                         <div>
                             <label
-                                class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500">Subject</label>
+                                class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Subject</label>
                             <select
-                                class="w-full bg-zinc-50 dark:bg-zinc-800/50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none appearance-none">
-                                <option>General Inquiry</option>
-                                <option>Mural Quote</option>
-                                <option>Collaborations</option>
-                                <option>Media/Press</option>
+                                class="w-full bg-zinc-50 dark:bg-zinc-800/50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none appearance-none text-zinc-900 dark:text-white">
+                                <option class="text-zinc-900 dark:text-white">General Inquiry</option>
+                                <option class="text-zinc-900 dark:text-white">Mural Quote</option>
+                                <option class="text-zinc-900 dark:text-white">Collaborations</option>
+                                <option class="text-zinc-900 dark:text-white">Media/Press</option>
                             </select>
                         </div>
                         <div>
                             <label
-                                class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500">Message</label>
+                                class="block text-sm font-bold mb-2 uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Message</label>
                             <textarea rows="6"
                                 class="w-full bg-zinc-50 dark:bg-zinc-800/50 border-none rounded-2xl py-4 px-6 focus:ring-2 focus:ring-primary outline-none"
                                 placeholder="How can we help you?"></textarea>

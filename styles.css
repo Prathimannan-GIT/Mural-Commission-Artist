@@ -13,9 +13,70 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Dark Mode Enhancements */
+.dark {
+    color-scheme: dark;
+}
+
+/* Enhanced Dark Mode Transitions */
+.dark * {
+    @apply transition-colors duration-300;
+}
+
+/* Dark Mode Specific Animations */
+.dark .animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+.dark .portfolio-card {
+    @apply bg-zinc-900 border-zinc-800;
+}
+
+.dark .filter-btn {
+    @apply bg-zinc-800 text-zinc-300 hover:bg-zinc-700;
+}
+
+.dark .filter-btn.active {
+    @apply bg-primary text-white;
+}
+
+/* Dark Mode Search Input */
+.dark .search-input {
+    @apply bg-zinc-800 border-zinc-700 text-white placeholder-zinc-400;
+}
+
+.dark .search-input:focus {
+    @apply ring-primary/50 border-primary;
+}
+
+/* Dark Mode Card Shadows */
+.dark .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+.dark .shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* Dark Mode Glass Effect */
 .dark .glass {
-    background: rgba(20, 20, 20, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(20, 20, 20, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Dark Mode Scrollbar */
+.dark ::-webkit-scrollbar-track {
+    @apply bg-zinc-900;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-700 border-zinc-900;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-600;
 }
 
 /* Custom Scrollbar */
@@ -47,9 +108,108 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
 .animate-fade-up {
     animation: fadeInUp 0.6s ease-out forwards;
 }
+
+.animate-slide-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-right {
+    animation: slideInRight 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Staggered animations */
+.stagger-animation > * {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-animation > *:nth-child(6) { animation-delay: 0.6s; }
 
 /* RTL Support */
 [dir="rtl"] .ml-auto {
@@ -75,6 +235,113 @@ input:focus, textarea:focus, select:focus {
 /* Card Hover Effects */
 .card-hover {
     @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+}
+
+/* Enhanced Portfolio Card Styles */
+.portfolio-card {
+    @apply transition-all duration-500 ease-out;
+}
+
+.portfolio-card:hover {
+    @apply transform -translate-y-3 shadow-2xl;
+}
+
+.portfolio-card .image-overlay {
+    @apply transition-all duration-500 ease-out;
+}
+
+.portfolio-card:hover .image-overlay {
+    @apply opacity-100;
+}
+
+.portfolio-card .card-content {
+    @apply transition-all duration-300 ease-out;
+}
+
+.portfolio-card:hover .card-content {
+    @apply transform translate-y-0 opacity-100;
+}
+
+/* Masonry Grid Fixes */
+.columns-1 > * {
+    @apply break-inside-avoid mb-6;
+}
+
+.columns-2 > * {
+    @apply break-inside-avoid mb-6;
+}
+
+.columns-3 > * {
+    @apply break-inside-avoid mb-6;
+}
+
+.columns-4 > * {
+    @apply break-inside-avoid mb-6;
+}
+
+/* Filter Button Animations */
+.filter-btn {
+    @apply transition-all duration-300 ease-out;
+}
+
+.filter-btn:hover {
+    @apply transform scale-105;
+}
+
+.filter-btn.active {
+    @apply transform scale-105 shadow-lg;
+}
+
+/* Search Input Focus Effects */
+.search-input:focus {
+    @apply ring-2 ring-primary/50 border-primary transform scale-105;
+}
+
+/* Loading Skeleton Animation */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+.dark .skeleton {
+    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    background-size: 1000px 100%;
+}
+
+/* Micro-interactions */
+.micro-bounce:hover {
+    animation: bounce 0.6s;
+}
+
+.micro-pulse:hover {
+    animation: pulse 1s;
+}
+
+/* Image Loading Animation */
+.image-loading {
+    @apply relative overflow-hidden;
+}
+
+.image-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced Transitions */
+* {
+    @apply transition-colors duration-300;
 }
 
 /* Responsive fixes */
