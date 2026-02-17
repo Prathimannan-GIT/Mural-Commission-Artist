@@ -55,7 +55,7 @@
     @scroll.window="scrolled = (window.pageYOffset > 20)">
     <!-- Navbar -->
     <header
-        :class="{ 'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm py-3 text-zinc-900 dark:text-white': scrolled, 'bg-transparent py-5 text-zinc-900 dark:text-white': !scrolled }"
+        :class="{ 'bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm py-3 text-zinc-900 dark:text-white': scrolled, 'bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md shadow-sm py-5 text-zinc-900 dark:text-white': !scrolled }"
         class="fixed top-0 w-full z-50 transition-all duration-300">
         <div class="container mx-auto px-4 md:px-6 flex items-center justify-between">
             <!-- Logo -->
@@ -266,7 +266,9 @@
                 </button>
             </div>
         </div>
+        
     </main>
+    
 
     <!-- Footer -->
     <footer class="bg-zinc-900 dark:bg-zinc-950 text-white pt-20 pb-10 transition-colors duration-300">
@@ -344,13 +346,7 @@
                 </div>
             </div>
 
-            <!-- CTA Section -->
-            <div class="text-center py-12 border-t border-zinc-800 dark:border-zinc-800 mb-12">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6 text-white">Ready to bring <span class="text-primary">your walls</span> to life?</h2>
-                <a href="booking.html" class="inline-block bg-primary hover:bg-primary-dark text-white px-10 py-4 rounded-full text-lg font-bold transition-all shadow-xl shadow-primary/20 hover:scale-105 active:scale-95">
-                    Get a Free Quote
-                </a>
-            </div>
+           
 
             <!-- Bottom Bar -->
             <div class="pt-8 border-t border-zinc-800 dark:border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-6">
