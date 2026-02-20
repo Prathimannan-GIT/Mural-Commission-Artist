@@ -350,3 +350,36 @@ html {
         font-size: clamp(2.5rem, 8vw, 4rem);
     }
 }
+
+/* Fix white line on right side for mobile and tablet */
+@media (max-width: 1024px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 100%;
+    }
+}
+
+/* Ensure full width layout */
+body {
+    overflow-x: hidden;
+}
+
+/* Remove any potential margin/padding issues */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
